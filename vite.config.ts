@@ -15,7 +15,7 @@ export default defineConfig(({mode}) => {
     },
     build: {
       sourcemap: false, // 不生成 source map 
-      outDir: 'microFrontendBase',
+      outDir: 'baseSite',
       terserOptions: { 
         compress: { // 打包时清除 console 和 debug 相关代码
           drop_console: true,
