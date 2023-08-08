@@ -4,10 +4,9 @@ import path from 'path'
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, __dirname);
-  console.log('env', env);
   return {
     plugins: [vue()],
-    base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
+    base: env.VITE_USER_NODE_ENV === 'production' ? '/baseSite/' : '/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
