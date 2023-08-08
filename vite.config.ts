@@ -6,7 +6,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, __dirname);
   return {
     plugins: [vue()],
-    base: env.VITE_USER_NODE_ENV === 'production' ? '/baseSite/' : '/',
+    base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
