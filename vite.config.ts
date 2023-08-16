@@ -9,7 +9,7 @@ export default defineConfig(({mode}) => {
     base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, './src'),
       }
     },
     build: {

@@ -19,7 +19,12 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## 部署事项
 
-项目访问地址为https://baseFront.yangxuhui.cn/baseSite/microFrontendBase
-VITE_APP_BASE_URL = '/baseSite/microFrontendBase'
-路由createWebHistory的baseurl为'/baseSite/microFrontendBase'
+Node版本 v16.19.1
+
+项目访问地址为https://baseFront.yangxuhui.cn/
+
+VITE_APP_BASE_URL = ''
+
+路由createWebHistory的baseurl为''
+
 
