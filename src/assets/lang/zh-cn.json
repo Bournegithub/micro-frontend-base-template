@@ -1,0 +1,9 @@
+{
+    "common": {
+        "app-title": "MicroApp+Vue+Vite 前端微服务基座"
+    },
+    "languages": {
+        "en": "英文",
+        "zh-cn": "中文"
+    }
+}

@@ -8,9 +8,11 @@
     "paths":{
       "@/*":["./src/*"]
     },
+    "types": ["pinia-plugin-persist", "vite/client"],
     /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true, // 引入JSON时配置
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

@@ -10,7 +10,19 @@ export default defineConfig(({mode}) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
       }
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          math: "always", // 括号内才使用数学计算
+          globalVars: {
+            // 全局变量
+            mainColor: "red",
+          },
+        },
+      },
     },
     build: {
       sourcemap: false, // 不生成 source map 
@@ -33,6 +45,6 @@ export default defineConfig(({mode}) => {
           rewrite: (path) => path.replace(/^\/api/, '') // 路径重写
         }
       }
-    }
+    },
   }
 })
