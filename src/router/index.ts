@@ -13,13 +13,27 @@ let noDynamicRouter = true;
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
-  console.log(to, 'to');
-  console.log(noDynamicRouter, 'noDynamicRouter');
   const token = localStorage.getItem('Authorization');
+  const menusStore = useMenusStore();
+  // 获取权限路由
+  const permissionsRouter = menusStore.getPermissionsRouter;
+  // 获取菜单
+  const navMenus = menusStore.getMenus;
+  // 设置当前菜单函数
+  const findDefaultActive = (menu = [] as Array<MenuOptions>, path: string) => {
+    menu.forEach((item) => {
+      if (item.path === path) {
+        menusStore.setDefaultActive(item.code);
+      } else {
+        if (item.children && item.children.length > 0) {
+          findDefaultActive(item.children, path);
+        }
+      }
+    });
+  };
   if (token && token !== '') {
     if (noDynamicRouter) {
-      const menusStore = useMenusStore();
-      const permissionsRouter = menusStore.getPermissionsRouter;
+      
       permissionsRouter.forEach((item) => {
         router.addRoute(item);
       });
@@ -28,37 +42,12 @@ router.beforeEach(async (to, from, next) => {
       // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个
       router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       noDynamicRouter = false;
-      const navMenus = menusStore.getMenus;
-      const findDefaultActive = (menu = [] as Array<MenuOptions>, path: string) => {
-        menu.forEach((item) => {
-          if (item.path === path) {
-            menusStore.setDefaultActive(item.code);
-          } else {
-            if (item.children && item.children.length > 0) {
-              findDefaultActive(item.children, path);
-            }
-          }
-        });
-      };
+      // 设置当前菜单
       findDefaultActive(navMenus, to.path);
-      // console.log('defaultActiveCode', defaultActiveCode);
-      // menusStore.setDefaultActive(defaultActiveCode);
       next({ ...to, replace: true });
     } else {
       to.path === '/login' ? next({path: '/'}) : next();
-      const menusStore = useMenusStore();
-      const navMenus = menusStore.getMenus;
-      const findDefaultActive = (menu = [] as Array<MenuOptions>, path: string) => {
-        menu.forEach((item) => {
-          if (item.path === path) {
-            menusStore.setDefaultActive(item.code);
-          } else {
-            if (item.children && item.children.length > 0) {
-              findDefaultActive(item.children, path);
-            }
-          }
-        });
-      };
+      // 设置当前菜单
       findDefaultActive(navMenus, to.path);
     }
   } else {
