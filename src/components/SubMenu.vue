@@ -1,0 +1,56 @@
+<template>
+		<!-- 有子节点，使用 el-sub-menu 渲染 -->
+    <el-sub-menu v-if="item[`${menuOptions.children}`] && item[`${menuOptions.children}`].length > 0" :index="item[`${menuOptions.code}`]">
+      <template #title>
+        <!-- <el-icon v-if="item[`${menuOptions.icon}`]">
+					<Component :is="ElementPlusIconsVue[item[`${menuOptions.icon}`]]"/>
+        </el-icon> -->
+        <span>{{ item[`${menuOptions.title}`] }}</span>
+      </template>
+      <!-- 循环渲染 -->
+      <SubMenu v-for="sub in item.children"
+                          :key="sub.code"
+                          :item="sub"
+                          :menu-options="menuOptions"/>
+    </el-sub-menu>
+    <!-- 没有子节点，使用 el-menu-item 渲染 -->
+		<template v-else>
+			<el-menu-item :index="item[`${menuOptions.code}`]" @click="jump(item)">
+				<!-- <el-icon v-if="item[`${menuOptions.icon}`]">
+					<Component :is="ElementPlusIconsVue[item[`${menuOptions.icon}`]]"/>
+				</el-icon> -->
+				<span>{{ item[`${menuOptions.title}`] }}</span>
+			</el-menu-item>
+		</template>
+  </template>
+  
+  <script lang="ts" setup>
+  // 模版中建议使用唯一code或者其他唯一值作为key, 不可使用path作为key, 使用动态参数路由时并用route.path作为default-active时会出现不能匹配的情况
+
+  import { PropType } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { MenuTransOptions } from '@/models/Menu';
+  import { useMenusStore } from '@/store/menu';
+
+  const router = useRouter();
+	const props = defineProps({
+    item: {
+      type: Object,
+      required: true
+    },
+    menuOptions: {
+      type: Object as PropType<MenuTransOptions>,
+      required: true
+    }
+  });
+  const menusStore = useMenusStore();
+  const jump = (item: any) => {
+    router.push(item.path);
+    menusStore.setDefaultActive(item.code);
+  }
+
+  </script>
+  
+  <style scoped lang="less">
+  </style>
+  

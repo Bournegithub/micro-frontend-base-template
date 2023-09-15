@@ -1,20 +1,29 @@
 <template>
-	<el-form ref="form" :model="formData" :rules="rules">
-    <el-form-item label="username" prop="username">
-      <el-input v-model="formData.username"></el-input>
-    </el-form-item>
-		<el-form-item label="password" prop="password">
-      <el-input v-model="formData.password"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm">Submit</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="login-page">
+    <el-form ref="formRef" :model="formData" :rules="rules">
+      <el-form-item label="username" prop="username">
+        <el-input v-model="formData.username"></el-input>
+      </el-form-item>
+      <el-form-item label="password" prop="password">
+        <el-input v-model="formData.password"></el-input>
+      </el-form-item>
+      <el-form-item class="submit-wrap">
+        <el-button type="primary" :disabled="submitStatus" @click="submitForm">Submit</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script lang="ts">
+import { ref, reactive } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useGlobalStore } from '@/store/index';
+import { useMenusStore } from '@/store/menu';
+import type { ElForm } from 'element-plus';
+import { login } from '@/server/request';
 
-import { ref } from 'vue';
+type FormInstance = InstanceType<typeof ElForm>
+type FormRules = InstanceType<typeof ElForm>
 
 export default {
   setup() {
@@ -22,7 +31,17 @@ export default {
       username: '',
 			password: '',
     });
-    const rules = ref({
+    const globalStore = useGlobalStore();
+    const submitStatus = ref(false);
+    const router = useRouter();
+    const route = useRoute();
+    const redirectUrl = route?.query?.redirect;
+    const redirectUrlStr = ref();
+    if(redirectUrl) {
+      redirectUrlStr.value = redirectUrl.toString();
+    }
+
+    const rules = reactive<FormRules>({
       username: [
         { required: true, message: 'Username is required', trigger: 'blur' },
         { min: 3, max: 16, message: 'Length should be between 3 and 16', trigger: 'blur' }
@@ -32,17 +51,72 @@ export default {
         { min: 8, max: 12, message: 'Length should be between 8 and 12', trigger: 'blur' }
       ]
     });
-
+    const formRef = ref<FormInstance>();
     const submitForm = () => {
-      console.log('sasd');
-    }
-    const formRef = ref(null)
+      formRef.value?.validate((valid: boolean) => {
+        if (valid) {
+          // Submit form data
+          userLogin(formData.value);
+        } else {
+          return false;
+        }
+      });
+    };
+    const menusStore = useMenusStore();
+    const userLogin = (data: Object) => {
+      submitStatus.value = true;
+      login(data).then((res) => {
+        if (res) {
+          const { token , userInfo } = res;
+          globalStore.setToken(token);
+          globalStore.setUserinfo(userInfo);
+          globalStore.setLanguage(userInfo.language || 'en');
+          // 存储到localstorage
+          localStorage.setItem('Authorization', token);
+          localStorage.setItem('language', userInfo.language || 'en');
+          // const userCopy = JSON.stringify(userInfo);
+          // localStorage.setItem('userInfo', userCopy);
+          // console.log('redirectUrlStr', redirectUrlStr);
+          // 获取菜单
+          menusStore.fetchMenus().then(() => {
+            if (redirectUrlStr.value) {
+              router.push({
+                path: redirectUrlStr.value,
+              });
+            } else {
+              router.push('/');
+            }
+          }).catch().finally();
+          
+        }
+      }).catch().finally(() => {
+        submitStatus.value = false;
+      });
+    };
     return {
       formData,
       rules,
       submitForm,
       formRef,
+      userLogin,
+      redirectUrlStr,
+      submitStatus,
     }
-  }
+  },
+  
 }
 </script>
+
+<style lang="less" scoped>
+  .login-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .submit-wrap {
+    text-align: right;
+  }
+</style>

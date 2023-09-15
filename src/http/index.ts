@@ -4,11 +4,11 @@ import router from '@/router';
 import { ElMessage } from 'element-plus';
 import { env } from '@/hooks/env';
 
-const { VITE_API_BASE_URL, VITE_API_PXY_URL } = env();
+const { NODE_ENV, VITE_API_BASE_URL, VITE_API_PXY_URL, VITE_APP_CODE } = env();
 
 const http: AxiosInstance = axios.create({
-	baseURL: `${VITE_API_BASE_URL}${VITE_API_PXY_URL}`,
-	timeout: 10 * 1000, // 请求超时时间
+	baseURL: NODE_ENV === 'dev' ? VITE_API_PXY_URL : VITE_API_BASE_URL,
+	timeout: 6 * 1000, // 请求超时时间
 	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 });
 
@@ -22,6 +22,7 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   if (Authorization) {
     config.headers.Authorization = Authorization;
   }
+	config.headers['APP-CODE'] = VITE_APP_CODE;
   // 在发送请求之前做些什么
 	// 判断上传下载请求头
   return config;
@@ -100,9 +101,9 @@ http.interceptors.response.use((response: AxiosResponse) => {
 		} else {
 			// 超时处理
 			if (JSON.stringify(error).includes('timeout')) {
-				error.message('服务器响应超时');
+				error.message = '服务器响应超时';
 			} else {
-				error.message('连接服务器失败');
+				error.message = '连接服务器失败';
 			}
 		}
 		ElMessage.error(error.message);
