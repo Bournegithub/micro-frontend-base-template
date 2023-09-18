@@ -48,7 +48,7 @@
     router.push(item.fullPath);
     menusStore.setDefaultActive(item.code);
   }
-
+  console.log('props', props);
   </script>
   
   <style scoped lang="less">
