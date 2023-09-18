@@ -41,7 +41,7 @@ router.beforeEach(async (to, from, next) => {
         router.addRoute(item);
       });
       // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个
-      console.log(permissionsRouter, permissionsRouter);
+      console.log('permissionsRouter', permissionsRouter);
       router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       // 错误捕获页面在此时添加
       router.addRoute(catchRoute);

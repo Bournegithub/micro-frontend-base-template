@@ -1,3 +1,3 @@
 <template>
-	<div>hbydef</div>
+	<div>react16</div>
 </template>

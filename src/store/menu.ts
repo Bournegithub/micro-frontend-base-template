@@ -20,7 +20,7 @@ const menu2router = (menus = [] as Array<RouteRecordRaw>, transField = {} as {[k
       }
       // 如果存在子路由,设置redirect
       if(item.children?.length) {
-        item.redirect = `${item.path}/${item.children[0].path}`;
+        item.redirect = `${item.fullPath}/${item.children[0].path}`;
         recursion(item.children);
       } else {
         const temp = item.component;

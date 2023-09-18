@@ -1,3 +1,3 @@
 <template>
-	<h2>abc</h2>
+	<div>react17</div>
 </template>

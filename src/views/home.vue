@@ -171,11 +171,11 @@ const rules = reactive({
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid: boolean, fields: string) => {
+  await formEl.validate((valid: boolean) => {
     if (valid) {
       console.log('submit!')
     } else {
-      console.log('error submit!', fields)
+      console.log('error submit!')
     }
   })
 }
