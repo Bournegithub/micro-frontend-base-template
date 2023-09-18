@@ -13,6 +13,7 @@ let noDynamicRouter = true;
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
+  console.log('from', from);
   const token = localStorage.getItem('Authorization');
   const menusStore = useMenusStore();
   // 获取权限路由
