@@ -5,5 +5,17 @@
     "languages": {
         "en": "English",
         "zh-cn": "Chinese"
+    },
+    "menu": {
+        "vue2": "App by Vue2",
+        "vue3": "App by Vue3",
+        "own": "Base site own",
+        "List": "List",
+        "Detail": "Detail",
+        "ssr": "SSR",
+        "react16": "App by React16",
+        "react17": "App by React17",
+        "angular11": "App by Angular11",
+        "multiple": "Multiple"
     }
 }

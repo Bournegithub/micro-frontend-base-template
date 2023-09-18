@@ -22,33 +22,37 @@ router.beforeEach(async (to, from, next) => {
   // 设置当前菜单函数
   const findDefaultActive = (menu = [] as Array<MenuOptions>, path: string) => {
     menu.forEach((item) => {
-      if (item.path === path) {
+      // 如果不是第一层节点, 截取to.path的最后一个斜杠后面的内容来匹配
+      let slicePath = path;
+      let index = slicePath.lastIndexOf('\/');
+      slicePath = slicePath.substring(index + 1, slicePath.length);
+      if (item.parentId === '0' ? item.path === path : item.path === slicePath) {
         menusStore.setDefaultActive(item.code);
       } else {
         if (item.children && item.children.length > 0) {
-          findDefaultActive(item.children, path);
+          return findDefaultActive(item.children, path);
         }
       }
     });
   };
   if (token && token !== '') {
     if (noDynamicRouter) {
-      
       permissionsRouter.forEach((item) => {
         router.addRoute(item);
       });
+      // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个
+      console.log('permissionsRouter', permissionsRouter);
+      router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       // 错误捕获页面在此时添加
       router.addRoute(catchRoute);
-      // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个
-      router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       noDynamicRouter = false;
       // 设置当前菜单
       findDefaultActive(navMenus, to.path);
       next({ ...to, replace: true });
     } else {
-      to.path === '/login' ? next({path: '/'}) : next();
       // 设置当前菜单
       findDefaultActive(navMenus, to.path);
+      to.path === '/login' ? next({path: '/'}) : next();
     }
   } else {
     // 没有token的情况下判断是不是跳往登陆,避免死循环

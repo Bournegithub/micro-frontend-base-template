@@ -1,3 +1,3 @@
 <template>
-	<div>gbydef</div>
+	<h2>vue2</h2>
 </template>

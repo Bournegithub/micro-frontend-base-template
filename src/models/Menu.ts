@@ -7,7 +7,7 @@ interface MenuOptions {
 	parentId: string,
 	parentTitle?: string,
 	path: string,
-	hidden?: boolean
+	hidden: boolean
 }
 
 interface MenuTransOptions {

@@ -1,3 +1,3 @@
 <template>
-	<div>hbydef</div>
+	<div>test</div>
 </template>

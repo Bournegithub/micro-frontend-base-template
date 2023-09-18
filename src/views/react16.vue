@@ -1,3 +1,3 @@
 <template>
-	<div>erabyxyz</div>
+	<div>react16</div>
 </template>

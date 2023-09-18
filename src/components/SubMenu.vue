@@ -5,7 +5,7 @@
         <!-- <el-icon v-if="item[`${menuOptions.icon}`]">
 					<Component :is="ElementPlusIconsVue[item[`${menuOptions.icon}`]]"/>
         </el-icon> -->
-        <span>{{ item[`${menuOptions.title}`] }}</span>
+        <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
       </template>
       <!-- 循环渲染 -->
       <SubMenu v-for="sub in item.children"
@@ -15,11 +15,11 @@
     </el-sub-menu>
     <!-- 没有子节点，使用 el-menu-item 渲染 -->
 		<template v-else>
-			<el-menu-item :index="item[`${menuOptions.code}`]" @click="jump(item)">
+			<el-menu-item v-if="!item.hidden" :index="item[`${menuOptions.code}`]" @click="jump(item)">
 				<!-- <el-icon v-if="item[`${menuOptions.icon}`]">
 					<Component :is="ElementPlusIconsVue[item[`${menuOptions.icon}`]]"/>
 				</el-icon> -->
-				<span>{{ item[`${menuOptions.title}`] }}</span>
+				<span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
 			</el-menu-item>
 		</template>
   </template>
@@ -45,7 +45,7 @@
   });
   const menusStore = useMenusStore();
   const jump = (item: any) => {
-    router.push(item.path);
+    router.push(item.fullPath);
     menusStore.setDefaultActive(item.code);
   }
 

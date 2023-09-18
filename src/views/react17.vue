@@ -1,3 +1,3 @@
 <template>
-	<div>testChild</div>
+	<div>react17</div>
 </template>

@@ -5,5 +5,17 @@
     "languages": {
         "en": "英文",
         "zh-cn": "中文"
+    },
+    "menu": {
+        "vue2": "Vue2应用",
+        "vue3": "Vue3应用",
+        "own": "基座自带页面",
+        "List": "列表",
+        "Detail": "详情",
+        "ssr": "服务端渲染",
+        "react16": "react16应用",
+        "react17": "react17应用",
+        "angular11": "angular11应用",
+        "multiple": "multiple应用"
     }
 }

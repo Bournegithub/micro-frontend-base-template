@@ -1,3 +1,3 @@
 <template>
-	<h2>abc</h2>
+  <div>vue3</div>
 </template>
