@@ -9,7 +9,7 @@ import vitePrerender from 'vite-plugin-prerender';
   两个解决方案:
   1. 去除package.json中type: "moudle",
   2. 修改 vite-plugin-prerender中dist文件夹内mjs文件
-  这里采用第二种,因为修改了node_moudle,所以安装了patch-package,做了一个补丁. (package.json script 增加 "postinstall": "patch-package")详情请参考patch-package文档
+  这里采用第二种(第一种方案不解决问题,直接解决提出了问题的人),因为修改了node_moudle,所以安装了patch-package,做了一个补丁. (package.json script 增加 "postinstall": "patch-package")详情请参考patch-package文档
 */
 
 
