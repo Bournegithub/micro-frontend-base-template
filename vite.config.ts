@@ -2,7 +2,16 @@ import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import legacy from '@vitejs/plugin-legacy';
-import seoPrerender from 'vite-plugin-seo-prerender';
+import vitePrerender from 'vite-plugin-prerender';
+
+/*
+  vite-plugin-prerender插件在vite中会报require问题,
+  两个解决方案:
+  1. 去除package.json中type: "moudle",
+  2. 修改 vite-plugin-prerender中dist文件夹内mjs文件
+  这里采用第二种,因为修改了node_moudle,所以安装了patch-package,做了一个补丁. (package.json script 增加 "postinstall": "patch-package")详情请参考patch-package文档
+*/
+
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, __dirname);
@@ -15,8 +24,10 @@ export default defineConfig(({mode}) => {
           }
         }
       }),
-      seoPrerender({
-        routes: ['/own/prerender', '/login', '/404'] // 需要生成的路由
+      vitePrerender({
+        staticDir: path.join(__dirname, 'baseSite'),
+        // Required - Routes to render.
+        routes: ['/', '/login', '/own/prerender'],
       }),
       // 兼容不支持 native ESM 的浏览器
       legacy({
