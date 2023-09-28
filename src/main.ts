@@ -18,7 +18,15 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 const pinia = createPinia();
 pinia.use(piniaPersist);
 
-microApp.start();
+microApp.start({
+	inline: false, // 默认值false
+  destroy: false, // 默认值false
+  disableScopecss: false, // 默认值false
+  disableSandbox: false, // 默认值false
+  shadowDOM: false, // 默认值false
+  ssr: false, // 默认值false
+});
+
 app.use(router);
 app.use(pinia);
 app.use(i18n);
