@@ -1,0 +1,25 @@
+diff --git a/node_modules/vite-plugin-prerender/dist/index.mjs b/node_modules/vite-plugin-prerender/dist/index.mjs
+index 8fc0df9..36463c3 100644
+--- a/node_modules/vite-plugin-prerender/dist/index.mjs
++++ b/node_modules/vite-plugin-prerender/dist/index.mjs
+@@ -3,10 +3,16 @@ import Debug from 'debug';
+ import fs from 'fs';
+ import chalk from 'chalk';
+ 
+-const Prerenderer = require("@prerenderer/prerenderer");
+-const PuppeteerRenderer = require("@prerenderer/renderer-puppeteer");
+-const { minify } = require("html-minifier");
+-const mkdirp = require("mkdirp");
++// const Prerenderer = require("@prerenderer/prerenderer");
++// const PuppeteerRenderer = require("@prerenderer/renderer-puppeteer");
++// const { minify } = require("html-minifier");
++// const mkdirp = require("mkdirp");
++
++import Prerenderer from "@prerenderer/prerenderer"
++import PuppeteerRenderer from "@prerenderer/renderer-puppeteer"
++import { minify } from "html-minifier"
++import mkdirp from "mkdirp"
++
+ const debug = Debug.debug("vite-plugin-prerender");
+ const compilerFS = fs;
+ function vitePrerender(options) {

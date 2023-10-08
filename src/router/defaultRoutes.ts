@@ -45,6 +45,9 @@ const catchRoute = {
   redirect: '/404',
 }
 
+// SEO, 预渲染的路由地址
+const preRenderRoutes = ['/own/prerender', '/login', '/404'];
+
 export default routes;
 
-export { catchRoute };
+export { catchRoute, preRenderRoutes };
