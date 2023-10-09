@@ -25,7 +25,7 @@ export default defineConfig(({mode}) => {
         }
       }),
       vitePrerender({
-        staticDir: path.join(__dirname, 'baseSite'),
+        staticDir: path.join(__dirname, 'basefront'),
         // Required - Routes to render.
         routes: ['/', '/login', '/own/prerender'],
       }),
@@ -75,7 +75,7 @@ export default defineConfig(({mode}) => {
     },
     build: {
       sourcemap: false, // 不生成 source map 
-      outDir: 'baseSite',
+      outDir: 'basefront',
       terserOptions: { 
         compress: { // 打包时清除 console 和 debug 相关代码
           drop_console: true,
