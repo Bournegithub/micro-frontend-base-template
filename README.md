@@ -23,7 +23,7 @@ Node版本 v16.19.1
 
 项目访问地址为https://baseFront.yangxuhui.cn/
 
-VITE_APP_BASE_URL = ''
+VITE_APP_BASE_URL = '/'
 
 路由createWebHistory的baseurl为''
 

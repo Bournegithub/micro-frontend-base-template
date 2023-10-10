@@ -4,10 +4,11 @@ import router from '@/router';
 import { ElMessage } from 'element-plus';
 import { env } from '@/hooks/env';
 
-const { NODE_ENV, VITE_API_BASE_URL, VITE_API_PXY_URL, VITE_APP_CODE } = env();
+const { VITE_USER_NODE_ENV, VITE_API_BASE_URL, VITE_API_PXY_URL, VITE_APP_CODE } = env();
 
+// VITE_API_PXY_URL和VITE_API_BASE_URL都为'/api',由nginx转发
 const http: AxiosInstance = axios.create({
-	baseURL: NODE_ENV === 'dev' ? VITE_API_PXY_URL : VITE_API_BASE_URL,
+	baseURL: VITE_USER_NODE_ENV === 'dev' ? VITE_API_PXY_URL : VITE_API_BASE_URL,
 	timeout: 6 * 1000, // 请求超时时间
 	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 });

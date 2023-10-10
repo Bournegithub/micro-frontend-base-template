@@ -6,7 +6,7 @@
 		<h2>vue2</h2>
 		<micro-app
 			name='app1'
-			url='http://localhost:8080/'
+			:url='microAppUrl'
 			baseroute='/vue2'
 			@created='created'
 			@beforemount='beforemount'
@@ -22,6 +22,20 @@
 
 <script lang="ts" setup>
 	import { ref } from 'vue';
+
+	import { env } from '@/hooks/env';
+
+	console.log('env()', env());
+	const { VITE_USER_NODE_ENV } = env();
+
+	const microAppUrlMap = {
+		'dev': 'http://localhost:8080/page-b',
+		'test': 'https://microapp.yangxuhui.cn/vue2/page-b',
+		'production': 'https://microapp.yangxuhui.cn/vue2/page-b',
+	};
+	// a[b]经常报元素隐式具有 "any" 类型,嫌麻烦可以直接将tsconfig.json中suppressImplicitAnyIndexErrors属性设为true
+	const microAppUrl = microAppUrlMap[VITE_USER_NODE_ENV as keyof typeof microAppUrlMap];
+
 	const loading = ref(true);
 	const created = () => {console.log('created')};
 	const beforemount = () => {console.log('beforemount')};
