@@ -88,7 +88,7 @@ export default defineConfig(({mode}) => {
       cors: true,
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL, 
+          target: 'https://mock.apifox.cn/m1/3136188-0-default', 
           changeOrigin: true, 
           ws: true, // 支持 websocket
           rewrite: (path) => path.replace(/^\/api/, '') // 路径重写
