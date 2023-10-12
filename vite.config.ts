@@ -29,31 +29,33 @@ export default defineConfig(({mode}) => {
         // outputDir: path.join(__dirname, 'basefront'),
         indexPath: path.join(__dirname, 'basefront', 'index.html'),
         // Required - Routes to render.
-        routes: ['/', '/login', '/own/prerender'],
+        routes: ['/login', '/own/prerender'],
         postProcess(renderedRoute) {
-          // Ignore any redirects.
-          // renderedRoute.route = renderedRoute.originalRoute;
-          // Basic whitespace removal. (Don't use this in production.)
-          // renderedRoute.html = renderedRoute.html.split(/>[\s]+</gim).join('><');
+          console.log('renderedRoute', renderedRoute);
           console.log('renderedRoute.route', renderedRoute.route);
           // 根据目录深度判断相对路径
           const splitLength = renderedRoute.route.split('/').length - 1;
-          console.log('splitLength', splitLength);
+          console.log('renderedRoute.outputPath', renderedRoute.outputPath);
+          console.log('__dirname', __dirname);
           const str = '../';
-          const relativePath = str + str.repeat(splitLength);
+          let relativePath = './';
+          if (splitLength > 1) {
+            relativePath = str.repeat(splitLength);
+          }
           renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
           renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
-          // console.log('renderedRoute.html', renderedRoute.html);
           // Remove /index.html from the output path if the dir name ends with a .html file extension.
           // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
-          // if (renderedRoute.route.endsWith('.html')) {
-          //   renderedRoute.outputPath = path.join(
-          //     __dirname,
-          //     'basefront',
-          //     renderedRoute.route,
-          //   )
-          // }
-
+          renderedRoute.route = `${renderedRoute.route}.html`;
+          if (renderedRoute.route.endsWith('.html')) {
+            console.log('rr', renderedRoute);
+            renderedRoute.outputPath = path.join(
+              __dirname,
+              'basefront',
+              renderedRoute.route,
+            )
+          }
+          console.log('xxrenderedRoute', renderedRoute);
           return renderedRoute
         },
       }),
