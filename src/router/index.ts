@@ -14,6 +14,7 @@ let noDynamicRouter = true;
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
   console.log('from', from);
+  console.log('to', to);
   const token = localStorage.getItem('Authorization');
   const menusStore = useMenusStore();
   // 获取权限路由
@@ -56,6 +57,7 @@ router.beforeEach(async (to, from, next) => {
       to.path === '/login' ? next({path: '/'}) : next();
     }
   } else {
+    console.log('first-to', to);
     // 没有token的情况下判断是不是跳往登陆,避免死循环
     if ( to.path === '/login') {
       console.log('to.path', to.path);
