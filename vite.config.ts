@@ -38,24 +38,25 @@ export default defineConfig(({mode}) => {
           console.log('renderedRoute.outputPath', renderedRoute.outputPath);
           console.log('__dirname', __dirname);
           const str = '../';
-          let relativePath = './';
-          if (splitLength > 1) {
-            relativePath = str.repeat(splitLength);
-          }
+          const relativePath = '../' + str.repeat(splitLength);
+          // let relativePath = './';
+          // if (splitLength > 1) {
+          //   relativePath = str.repeat(splitLength);
+          // }
           renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
           renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
           // Remove /index.html from the output path if the dir name ends with a .html file extension.
           // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
-          renderedRoute.route = `${renderedRoute.route}.html`;
-          if (renderedRoute.route.endsWith('.html')) {
-            console.log('rr', renderedRoute);
-            renderedRoute.outputPath = path.join(
-              __dirname,
-              'basefront',
-              renderedRoute.route,
-            )
-          }
-          console.log('xxrenderedRoute', renderedRoute);
+          // renderedRoute.route = `${renderedRoute.route}.html`;
+          // if (renderedRoute.route.endsWith('.html')) {
+          //   console.log('rr', renderedRoute);
+          //   renderedRoute.outputPath = path.join(
+          //     __dirname,
+          //     'basefront',
+          //     renderedRoute.route,
+          //   )
+          // }
+          // console.log('xxrenderedRoute', renderedRoute);
           return renderedRoute
         },
       }),
