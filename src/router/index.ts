@@ -58,8 +58,10 @@ router.beforeEach(async (to, from, next) => {
   } else {
     // 没有token的情况下判断是不是跳往登陆,避免死循环
     if ( to.path === '/login') {
+      console.log('to.path', to.path);
       next();
     } else {
+      console.log('to', to);
       next({
         path: '/login',
         query:{
