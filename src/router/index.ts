@@ -59,7 +59,8 @@ router.beforeEach(async (to, from, next) => {
   } else {
     console.log('first-to', to);
     // 没有token的情况下判断是不是跳往登陆,避免死循环
-    if ( to.path === '/login') {
+    // 增加预渲染情况下路由变成/login/的情况，解决redirect无限重复循环
+    if ( to.path === '/login' || to.path === '/login/') {
       console.log('to.path', to.path);
       next();
     } else {
