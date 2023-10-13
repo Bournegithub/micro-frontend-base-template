@@ -65,7 +65,9 @@ router.beforeEach(async (to, from, next) => {
       next();
     // 增加预渲染情况下路由变成/login/的情况，解决redirect无限重复循环
     } else if (to.path === '/login/') {
-      const redirectStr = to.fullPath.substring(to.fullPath.lastIndexOf('=') + 1, to.path.length);
+      const strKey = '?redirect=';
+      let str = to.fullPath.replace(strKey, ' ');
+      const redirectStr = str.substring(str.lastIndexOf(' ') + 1, str.length);
       // 截取最后一个=号之后的内容,以免重复
       next({
         path: '/login',
