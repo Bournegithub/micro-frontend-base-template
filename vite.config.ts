@@ -30,35 +30,38 @@ export default defineConfig(({mode}) => {
         indexPath: path.join(__dirname, 'basefront', 'index.html'),
         // Required - Routes to render.
         routes: ['/login', '/own/prerender'],
-        postProcess(renderedRoute) {
-          // console.log('renderedRoute', renderedRoute);
-          // console.log('renderedRoute.route', renderedRoute.route);
-          // 根据目录深度判断相对路径
-          const splitLength = renderedRoute.route.split('/').length - 1;
-          // console.log('renderedRoute.outputPath', renderedRoute.outputPath);
-          // console.log('__dirname', __dirname);
-          const str = '../';
-          // const relativePath = '../' + str.repeat(splitLength);
-          let relativePath = './';
-          if (splitLength > 1) {
-            relativePath = str.repeat(splitLength);
-          }
-          renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
-          renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
-          // Remove /index.html from the output path if the dir name ends with a .html file extension.
-          // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
-          renderedRoute.route = `${renderedRoute.route}.html`;
-          if (renderedRoute.route.endsWith('.html')) {
-            console.log('rr', renderedRoute);
-            renderedRoute.outputPath = path.join(
-              __dirname,
-              'basefront',
-              renderedRoute.route,
-            )
-          }
-          // console.log('xxrenderedRoute', renderedRoute);
-          return renderedRoute
-        },
+        // 最终根据路由生成login/index.html文件路径结构, 由nginx配置(用alias,root会产生301重定向)
+        // /login.html /own/prerender.html, 多层路径下nginx不好配置
+        
+        // postProcess(renderedRoute) {
+        //   // console.log('renderedRoute', renderedRoute);
+        //   // console.log('renderedRoute.route', renderedRoute.route);
+        //   // 根据目录深度判断相对路径
+        //   const splitLength = renderedRoute.route.split('/').length - 1;
+        //   // console.log('renderedRoute.outputPath', renderedRoute.outputPath);
+        //   // console.log('__dirname', __dirname);
+        //   const str = '../';
+        //   const relativePath = '../' + str.repeat(splitLength);
+        //   // let relativePath = './';
+        //   // if (splitLength > 1) {
+        //   //   relativePath = str.repeat(splitLength);
+        //   // }
+        //   renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
+        //   renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
+        //   // Remove /index.html from the output path if the dir name ends with a .html file extension.
+        //   // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
+        //   // renderedRoute.route = `${renderedRoute.route}.html`;
+        //   // if (renderedRoute.route.endsWith('.html')) {
+        //   //   console.log('rr', renderedRoute);
+        //   //   renderedRoute.outputPath = path.join(
+        //   //     __dirname,
+        //   //     'basefront',
+        //   //     renderedRoute.route,
+        //   //   )
+        //   // }
+        //   // console.log('xxrenderedRoute', renderedRoute);
+        //   return renderedRoute
+        // },
       }),
       // 兼容不支持 native ESM 的浏览器
       legacy({
@@ -107,12 +110,29 @@ export default defineConfig(({mode}) => {
     build: {
       sourcemap: false, // 不生成 source map 
       outDir: 'basefront',
+      emptyOutDir: true,
+      chunkSizeWarningLimit: 1500, // chunks 大小限制
+      minify: 'terser',
       terserOptions: { 
         compress: { // 打包时清除 console 和 debug 相关代码
           drop_console: true,
           drop_debugger: true,
         },
       },
+      // rollupOptions: {
+      //   output: {
+      //     manualChunks(id) {
+      //       if (id.includes('node_modules')) {
+      //         return id.toString().split('node_modules/')[1].split('/')[0].toString();
+      //       }
+      //     },
+      //     chunkFileNames: (chunkInfo) => {
+      //       const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
+      //       const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
+      //       return `js/${fileName}/[name].[hash].js`;
+      //     }
+      //   }
+      // }
     },
     server: {
       open: true, 
