@@ -62,7 +62,12 @@ router.beforeEach(async (to, from, next) => {
     // 增加预渲染情况下路由变成/login/的情况，解决redirect无限重复循环
     if ( to.path === '/login' || to.path === '/login/') {
       console.log('to.path', to.path);
-      next();
+      next({
+        path: '/login',
+        query:{
+          redirect: to.fullPath,
+        }
+      });
     } else {
       console.log('to', to);
       next({
