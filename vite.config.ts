@@ -115,8 +115,8 @@ export default defineConfig(({mode}) => {
       minify: 'terser',
       terserOptions: { 
         compress: { // 打包时清除 console 和 debug 相关代码
-          drop_console: true,
-          drop_debugger: true,
+          // drop_console: true,
+          // drop_debugger: true,
         },
       },
       // rollupOptions: {
