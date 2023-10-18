@@ -24,46 +24,46 @@ export default defineConfig(({mode}) => {
           }
         }
       }),
-      // vitePrerender({
-      //   staticDir: path.join(__dirname, 'basefront'),
-      //   // outputDir: path.join(__dirname, 'basefront'),
-      //   indexPath: path.join(__dirname, 'basefront', 'index.html'),
-      //   // Required - Routes to render.
-      //   // routes: ['/login', '/own/prerender'],
-      //   routes: ['/login'],
-      //   // 最终根据路由生成login/index.html文件路径结构, 由nginx配置
-      //   // /login.html /own/prerender.html, 多层路径下nginx不好配置
-      //   // 预渲染问题较多，不建议使用，尤其是多层结构，配置nginx后可解决，但是会导致其他同层级未预渲染页面刷新后无法找到assets资源
-      //   postProcess(renderedRoute) {
-      //     // console.log('renderedRoute', renderedRoute);
-      //     // console.log('renderedRoute.route', renderedRoute.route);
-      //     // 根据目录深度判断相对路径
-      //     const splitLength = renderedRoute.route.split('/').length - 1;
-      //     // console.log('renderedRoute.outputPath', renderedRoute.outputPath);
-      //     // console.log('__dirname', __dirname);
-      //     const str = '../';
-      //     const relativePath = '../' + str.repeat(splitLength);
-      //     // let relativePath = './';
-      //     // if (splitLength > 1) {
-      //     //   relativePath = str.repeat(splitLength);
-      //     // }
-      //     renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
-      //     renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
-      //     // Remove /index.html from the output path if the dir name ends with a .html file extension.
-      //     // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
-      //     // renderedRoute.route = `${renderedRoute.route}.html`;
-      //     // if (renderedRoute.route.endsWith('.html')) {
-      //     //   console.log('rr', renderedRoute);
-      //     //   renderedRoute.outputPath = path.join(
-      //     //     __dirname,
-      //     //     'basefront',
-      //     //     renderedRoute.route,
-      //     //   )
-      //     // }
-      //     // console.log('xxrenderedRoute', renderedRoute);
-      //     return renderedRoute
-      //   },
-      // }),
+      vitePrerender({
+        staticDir: path.join(__dirname, 'basefront'),
+        // outputDir: path.join(__dirname, 'basefront'),
+        indexPath: path.join(__dirname, 'basefront', 'index.html'),
+        // Required - Routes to render.
+        routes: ['/login', '/own/prerender'],
+        // routes: ['/login'],
+        // 最终根据路由生成login/index.html文件路径结构, 由nginx配置
+        // /login.html /own/prerender.html, 多层路径下nginx不好配置
+        // 预渲染问题较多，不建议使用，尤其是多层结构，配置nginx后可解决，但是会导致其他同层级未预渲染页面刷新后无法找到assets资源
+        // postProcess(renderedRoute) {
+        //   // console.log('renderedRoute', renderedRoute);
+        //   // console.log('renderedRoute.route', renderedRoute.route);
+        //   // 根据目录深度判断相对路径
+        //   const splitLength = renderedRoute.route.split('/').length - 1;
+        //   // console.log('renderedRoute.outputPath', renderedRoute.outputPath);
+        //   // console.log('__dirname', __dirname);
+        //   const str = '../';
+        //   const relativePath = '../' + str.repeat(splitLength);
+        //   // let relativePath = './';
+        //   // if (splitLength > 1) {
+        //   //   relativePath = str.repeat(splitLength);
+        //   // }
+        //   renderedRoute.html = renderedRoute.html.replace(/href="http:\/\/localhost:8000/g, `href="${env.VITE_APP_URL}`);
+        //   renderedRoute.html = renderedRoute.html.replace(/\.\/assets/g, `${relativePath}assets`);
+        //   // Remove /index.html from the output path if the dir name ends with a .html file extension.
+        //   // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
+        //   // renderedRoute.route = `${renderedRoute.route}.html`;
+        //   // if (renderedRoute.route.endsWith('.html')) {
+        //   //   console.log('rr', renderedRoute);
+        //   //   renderedRoute.outputPath = path.join(
+        //   //     __dirname,
+        //   //     'basefront',
+        //   //     renderedRoute.route,
+        //   //   )
+        //   // }
+        //   // console.log('xxrenderedRoute', renderedRoute);
+        //   return renderedRoute
+        // },
+      }),
       // 兼容不支持 native ESM 的浏览器
       legacy({
         targets: ['chrome < 60', 'edge < 15', 'Firefox < 59'],
