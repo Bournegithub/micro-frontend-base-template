@@ -5,8 +5,7 @@ import type { MenuOptions } from '@/models/Menu';
 
 
 const router = createRouter({
-  // history: createWebHistory(import.meta.env.VITE_APP_BASE_FLODER),
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.VITE_APP_BASE_FLODER),
   routes,
 });
 
