@@ -90,8 +90,8 @@ export default defineConfig(({mode}) => {
         ]
       }),
     ],
-    // base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
-    base: '/',
+    // 使用'./'深层嵌套路由刷新时会加载不到静态文件
+    base: env.VITE_APP_BASE_FLODER,
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
