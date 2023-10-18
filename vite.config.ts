@@ -90,7 +90,8 @@ export default defineConfig(({mode}) => {
         ]
       }),
     ],
-    base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
+    // base: env.VITE_USER_NODE_ENV === 'production' ? './' : '/',
+    base: '/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
