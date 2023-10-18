@@ -26,10 +26,27 @@ export default defineConfig(({mode}) => {
       }),
       vitePrerender({
         staticDir: path.join(__dirname, 'basefront'),
-        // outputDir: path.join(__dirname, 'basefront'),
+        outputDir: path.join(__dirname, 'basefront'),
         indexPath: path.join(__dirname, 'basefront', 'index.html'),
         // Required - Routes to render.
         routes: ['/login', '/own/prerender'],
+        postProcess(renderedRoute) {
+          // Ignore any redirects.
+          renderedRoute.route = renderedRoute.originalRoute
+          // Basic whitespace removal. (Don't use this in production.)
+          // renderedRoute.html = renderedRoute.html.split(/>[\s]+</gim).join('><')
+          // Remove /index.html from the output path if the dir name ends with a .html file extension.
+          // For example: /dist/dir/special.html/index.html -> /dist/dir/special.html
+          if (renderedRoute.route.endsWith('.html')) {
+            renderedRoute.outputPath = path.join(
+              __dirname,
+              'basefront',
+              renderedRoute.route,
+            )
+          }
+
+          return renderedRoute
+        },
         // routes: ['/login'],
         // 最终根据路由生成login/index.html文件路径结构, 由nginx配置
         // /login.html /own/prerender.html, 多层路径下nginx不好配置
