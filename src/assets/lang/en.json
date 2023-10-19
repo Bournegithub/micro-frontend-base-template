@@ -13,6 +13,7 @@
         "List": "List",
         "Detail": "Detail",
         "vue3-ssr": "Vue3 SSR",
+        "nuxt3": "Nuxt 3",
         "prerender": "Pre Render (SSG)",
         "react16": "App by React16",
         "react17": "App by React17",
