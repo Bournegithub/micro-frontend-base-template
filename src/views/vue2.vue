@@ -5,7 +5,7 @@
 	>
 		<h2>vue2</h2>
 		<micro-app
-			name='app1'
+			name='micro-app-vue2'
 			:url='microAppUrl'
 			baseroute='/vue2'
 			@created='created'
