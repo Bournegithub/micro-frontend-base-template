@@ -21,6 +21,8 @@ import { useGlobalStore } from '@/store/index';
 import { useMenusStore } from '@/store/menu';
 import type { ElForm } from 'element-plus';
 import { login } from '@/server/request';
+import { useHead } from '@unhead/vue';
+// 使用@unhead/vue来做seo,vue-meta有name值不可更换的问题
 
 type FormInstance = InstanceType<typeof ElForm>
 type FormRules = InstanceType<typeof ElForm>
@@ -93,6 +95,12 @@ export default {
         submitStatus.value = false;
       });
     };
+    const seoHead = useHead({
+      title: 'My awesome site login page',
+      meta: [
+        { name: 'description', content: 'Learn more about us.' },
+      ],
+    });
     return {
       formData,
       rules,
@@ -101,6 +109,7 @@ export default {
       userLogin,
       redirectUrlStr,
       submitStatus,
+      seoHead,
     }
   },
   
