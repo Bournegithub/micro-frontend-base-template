@@ -22,6 +22,7 @@ import { useMenusStore } from '@/store/menu';
 import type { ElForm } from 'element-plus';
 import { login } from '@/server/request';
 import { useHead } from '@unhead/vue';
+// 使用@unhead/vue来做seo,vue-meta有name值不可更换的问题
 
 type FormInstance = InstanceType<typeof ElForm>
 type FormRules = InstanceType<typeof ElForm>
