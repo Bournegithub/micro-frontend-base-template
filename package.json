@@ -13,6 +13,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "2.1.0",
     "@micro-zoe/micro-app": "1.0.0-beta.5",
+    "@unhead/vue": "^1.7.4",
     "axios": "1.4.0",
     "element-plus": "2.3.9",
     "install": "0.13.0",

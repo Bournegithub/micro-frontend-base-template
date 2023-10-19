@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createHead } from '@unhead/vue';
 import router from "./router/index";
 import { createPinia } from 'pinia';
 import piniaPersist from 'pinia-plugin-persist';
@@ -11,6 +12,7 @@ import './style.css';
 import App from './App.vue';
 
 const app = createApp(App);
+const head = createHead();
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component);
 }
@@ -29,6 +31,7 @@ microApp.start({
 
 app.use(router);
 app.use(pinia);
+app.use(head);
 app.use(i18n);
 app.use(ElementPlus);
 
