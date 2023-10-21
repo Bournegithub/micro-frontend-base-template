@@ -4,9 +4,11 @@
 		class="page-wrap"
 	>
 		<h2>vue3</h2>
+		<!-- 子应用为vite应用时候采用iframe模式 -->
 		<micro-app
 			name='micro-app-vue3'
 			:url='microAppUrl'
+			iframe
 			@created='created'
 			@beforemount='beforemount'
 			@mounted='mounted'
@@ -28,7 +30,7 @@
 	const { VITE_USER_NODE_ENV } = env();
 
 	const microAppUrlMap = {
-		'dev': 'http://localhost:5173/vue3/about',
+		'dev': 'http://localhost:5174/vue3/about',
 		'test': 'https://microapp.yangxuhui.cn/vue3/about',
 		'production': 'https://microapp.yangxuhui.cn/vue3/about',
 	};
