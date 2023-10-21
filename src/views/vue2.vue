@@ -7,7 +7,6 @@
 		<micro-app
 			name='micro-app-vue2'
 			:url='microAppUrl'
-			baseroute='/vue2'
 			@created='created'
 			@beforemount='beforemount'
 			@mounted='mounted'
