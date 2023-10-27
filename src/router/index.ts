@@ -59,7 +59,17 @@ router.beforeEach(async (to, from, next) => {
   } else {
     console.log('first-to', to);
     // 没有token的情况下判断是不是跳往登陆,避免死循环
-    
+    // 判断页面requiresAuth是否需要鉴权,不需要则直接跳转,需要则跳转到login
+    // if (to.meta.requiresAuth) {
+    //   next({
+    //     path: '/login',
+    //     query:{
+    //       redirect: to.fullPath,
+    //     }
+    //   });
+    // } else {
+    //   next();
+    // }
     if ( to.path === '/login') {
       // console.log('to.path', to.path);
       next();
