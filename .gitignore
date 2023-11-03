@@ -9,7 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
-basefront
+# 服务器内存不够,本地打包上传
+# basefront
 dist-ssr
 *.local
 
