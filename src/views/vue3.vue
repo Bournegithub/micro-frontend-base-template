@@ -8,6 +8,7 @@
 		<micro-app
 			name='micro-app-vue3'
 			:url='microAppUrl'
+			iframe
 			@created='created'
 			@beforemount='beforemount'
 			@mounted='mounted'
