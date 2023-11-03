@@ -32,7 +32,7 @@
 	const microAppUrlMap = {
 		'dev': 'http://localhost:8080/page-b',
 		'test': 'https://microapp.yangxuhui.cn/vue2/page-b',
-		'production': 'https://microapp.yangxuhui.cn/nuxt3/login',
+		'production': 'https://microapp.yangxuhui.cn/nuxt3/single',
 	};
 	// a[b]经常报元素隐式具有 "any" 类型,嫌麻烦可以直接将tsconfig.json中suppressImplicitAnyIndexErrors属性设为true
 	const microAppUrl = microAppUrlMap[VITE_USER_NODE_ENV as keyof typeof microAppUrlMap];
