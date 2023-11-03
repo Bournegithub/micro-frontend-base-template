@@ -7,6 +7,7 @@
 		<micro-app
 			name='micro-app-nuxt3'
 			:url='microAppUrl'
+			iframe
 			ssr
 			@created='created'
 			@beforemount='beforemount'
