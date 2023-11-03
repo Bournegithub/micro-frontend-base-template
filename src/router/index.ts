@@ -26,11 +26,16 @@ router.beforeEach(async (to, from, next) => {
     menu.forEach((item) => {
       // 如果不是第一层节点, 截取to.path的最后一个斜杠后面的内容来匹配
       let slicePath = path;
+      // 因为是基座, 截取问号之前的最后一个斜杠的内容来匹配,
       let index = slicePath.lastIndexOf('\/');
       slicePath = slicePath.substring(index + 1, slicePath.length);
+      console.log('slicePath', slicePath);
+      console.log('item.path', item.path);
       if (item.parentId === '0' ? item.path === path : item.path === slicePath) {
         menusStore.setDefaultActive(item.code);
       } else {
+        console.log('else-item.children', item.children);
+        console.log('else-path', path);
         if (item.children && item.children.length > 0) {
           return findDefaultActive(item.children, path);
         }
