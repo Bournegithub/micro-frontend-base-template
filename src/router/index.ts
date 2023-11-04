@@ -13,8 +13,8 @@ let noDynamicRouter = true;
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
-  console.log('from', from);
-  console.log('to', to);
+  // console.log('from', from);
+  // console.log('to', to);
   const token = localStorage.getItem('Authorization');
   const menusStore = useMenusStore();
   // 获取权限路由
@@ -34,8 +34,6 @@ router.beforeEach(async (to, from, next) => {
       if (item.parentId === '0' ? item.path === path : item.path === slicePath) {
         menusStore.setDefaultActive(item.code);
       } else {
-        console.log('else-item.children', item.children);
-        console.log('else-path', path);
         if (item.children && item.children.length > 0) {
           return findDefaultActive(item.children, path);
         }
@@ -55,10 +53,12 @@ router.beforeEach(async (to, from, next) => {
       noDynamicRouter = false;
       // 设置当前菜单
       findDefaultActive(navMenus, to.path);
+      console.log('debug1-to', to);
       next({ ...to, replace: true });
     } else {
       // 设置当前菜单
       findDefaultActive(navMenus, to.path);
+      console.log('debug2-to', to);
       to.path === '/login' ? next({path: '/'}) : next();
     }
   } else {
