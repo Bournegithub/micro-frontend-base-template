@@ -13,7 +13,7 @@ let noDynamicRouter = true;
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
-  // console.log('from', from);
+  console.log('from', from);
   // console.log('to', to);
   const token = localStorage.getItem('Authorization');
   const menusStore = useMenusStore();
@@ -29,8 +29,8 @@ router.beforeEach(async (to, from, next) => {
       // 因为是基座, 截取问号之前的最后一个斜杠的内容来匹配,
       let index = slicePath.lastIndexOf('\/');
       slicePath = slicePath.substring(index + 1, slicePath.length);
-      console.log('slicePath', slicePath);
-      console.log('item.path', item.path);
+      // console.log('slicePath', slicePath);
+      // console.log('item.path', item.path);
       if (item.parentId === '0' ? item.path === path : item.path === slicePath) {
         menusStore.setDefaultActive(item.code);
       } else {
