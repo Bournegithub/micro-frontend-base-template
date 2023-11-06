@@ -26,7 +26,7 @@
 
 	import { env } from '@/hooks/env';
 
-	console.log('env()', env());
+	// console.log('env()', env());
 	const { VITE_USER_NODE_ENV } = env();
 
 	const microAppUrlMap = {
