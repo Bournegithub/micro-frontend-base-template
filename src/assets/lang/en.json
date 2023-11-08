@@ -17,6 +17,7 @@
         "prerender": "Pre Render (SSG)",
         "react16": "App by React16",
         "react17": "App by React17",
+        "react18": "App by React18",
         "angular11": "App by Angular11",
         "multiple": "Multiple"
     }

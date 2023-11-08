@@ -17,6 +17,7 @@
         "prerender": "预渲染",
         "react16": "react16应用",
         "react17": "react17应用",
+        "react18": "react18应用",
         "angular11": "angular11应用",
         "multiple": "multiple应用"
     }
