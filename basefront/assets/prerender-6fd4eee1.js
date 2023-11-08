@@ -1,1 +1,0 @@
-import{u as e}from"./vue.f36acd1f-1348ebb8.js";import{d as r,c as n,o as t}from"./index-e2fe167c.js";const a=r({__name:"prerender",setup:r=>(e({title:"prerender",meta:[{name:"description",content:"prerender page"}]}),(e,r)=>(t(),n("div",null,"基座预留prerender页面")))});export{a as default};
