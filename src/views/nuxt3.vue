@@ -7,7 +7,6 @@
 		<micro-app
 			name='micro-app-nuxt3'
 			:url='microAppUrl'
-			iframe
 			ssr
 			@created='created'
 			@beforemount='beforemount'
@@ -30,7 +29,7 @@
 	const { VITE_USER_NODE_ENV } = env();
 
 	const microAppUrlMap = {
-		'dev': 'http://localhost:8080/page-b',
+		'dev': 'https://microapp.yangxuhui.cn/nuxt3/single',
 		'test': 'https://microapp.yangxuhui.cn/vue2/page-b',
 		'production': 'https://microapp.yangxuhui.cn/nuxt3/single',
 	};

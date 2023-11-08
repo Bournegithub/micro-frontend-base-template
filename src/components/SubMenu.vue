@@ -19,6 +19,7 @@
 				<!-- <el-icon v-if="item[`${menuOptions.icon}`]">
 					<Component :is="ElementPlusIconsVue[item[`${menuOptions.icon}`]]"/>
 				</el-icon> -->
+        {{ item.title }}
 				<span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
 			</el-menu-item>
 		</template>
@@ -45,10 +46,11 @@
   });
   const menusStore = useMenusStore();
   const jump = (item: any) => {
+    console.log('click-item-props', item, props);
+    console.log('item.fullPath', item.fullPath);
     router.push(item.fullPath);
     menusStore.setDefaultActive(item.code);
   }
-  console.log('props', props);
   </script>
   
   <style scoped lang="less">

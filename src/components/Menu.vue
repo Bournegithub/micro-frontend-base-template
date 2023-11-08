@@ -26,10 +26,10 @@ const options = ref({});
 const menuData = computed(() => {
 	return props.data;
 });
-console.log('props.data', props.data);
-console.log('props.menuOptions', props.menuOptions);
+// console.log('props.data', props.data);
+// console.log('props.menuOptions', props.menuOptions);
 watch([props.data], () => {
-	console.log('props.data', props.data);
+	// console.log('props.data', props.data);
 });
 onMounted(() => {
 	options.value = {
