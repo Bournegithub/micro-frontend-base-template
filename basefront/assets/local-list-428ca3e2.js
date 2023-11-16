@@ -1,0 +1,1 @@
+import{u as t}from"./vue.f36acd1f-709afca1.js";import{d as s,c as a,o}from"./index-bad6bd82.js";const e=s({__name:"local-list",setup:s=>(t({title:"own list",meta:[{name:"description",content:"own list page"}]}),(t,s)=>(o(),a("div",null,"local-list")))});export{e as default};
