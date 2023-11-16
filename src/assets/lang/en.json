@@ -7,19 +7,16 @@
     "zh-cn": "Chinese"
   },
   "menu": {
-    "vue2": "App by Vue2",
-    "vue3": "App by Vue3",
+    "vue2": "Vue 2",
+    "vue3": "Vue 3",
     "own": "Base site own",
     "List": "List",
     "Detail": "Detail",
-    "vue3-ssr": "Vue3 SSR",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "Pre Render (SSG)",
-    "react16": "App by React16",
-    "react17": "App by React17",
-    "react18": "App by React18",
-    "angular11": "App by Angular11",
+    "react18": "React 18",
+    "angular17": "Angular 17",
     "multiple": "Multiple"
   }
 }

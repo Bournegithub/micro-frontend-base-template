@@ -7,19 +7,16 @@
     "zh-cn": "中文"
   },
   "menu": {
-    "vue2": "Vue2应用",
-    "vue3": "Vue3应用",
+    "vue2": "Vue 2",
+    "vue3": "Vue 3",
     "own": "基座自带页面",
     "List": "列表",
     "Detail": "详情",
-    "vue3-ssr": "Vue3 服务端渲染",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "预渲染",
-    "react16": "react16应用",
-    "react17": "react17应用",
-    "react18": "react18应用",
-    "angular11": "angular11应用",
-    "multiple": "multiple应用"
+    "react18": "React 18",
+    "angular11": "Angular 11",
+    "multiple": "多个应用"
   }
 }
