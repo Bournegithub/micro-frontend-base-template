@@ -1,24 +1,25 @@
 {
-    "common": {
-        "app-title": "MicroApp+Vue+Vite Base for micro frontend server"
-    },
-    "languages": {
-        "en": "English",
-        "zh-cn": "Chinese"
-    },
-    "menu": {
-        "vue2": "App by Vue2",
-        "vue3": "App by Vue3",
-        "own": "Base site own",
-        "List": "List",
-        "Detail": "Detail",
-        "vue3-ssr": "Vue3 SSR",
-        "nuxt3": "Nuxt 3",
-        "prerender": "Pre Render (SSG)",
-        "react16": "App by React16",
-        "react17": "App by React17",
-        "react18": "App by React18",
-        "angular11": "App by Angular11",
-        "multiple": "Multiple"
-    }
+  "common": {
+    "app-title": "MicroApp+Vue+Vite Base for micro frontend server"
+  },
+  "languages": {
+    "en": "English",
+    "zh-cn": "Chinese"
+  },
+  "menu": {
+    "vue2": "App by Vue2",
+    "vue3": "App by Vue3",
+    "own": "Base site own",
+    "List": "List",
+    "Detail": "Detail",
+    "vue3-ssr": "Vue3 SSR",
+    "nuxt3": "Nuxt 3",
+    "next14": "Next 14",
+    "prerender": "Pre Render (SSG)",
+    "react16": "App by React16",
+    "react17": "App by React17",
+    "react18": "App by React18",
+    "angular11": "App by Angular11",
+    "multiple": "Multiple"
+  }
 }
