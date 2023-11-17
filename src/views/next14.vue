@@ -1,6 +1,6 @@
 <template>
   <div v-loading="loading" class="page-wrap">
-    <h2>NXUT3</h2>
+    <h2>NEXT14</h2>
     <micro-app
       name="micro-app-next14"
       :url="microAppUrl"
