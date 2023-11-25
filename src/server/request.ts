@@ -10,9 +10,9 @@ export const menus = (data: Object) => {
 };
 
 export const ownList = (data: Object) => {
-  return http.get(api.siteOwn.ownList);
+  return http.get(api.siteOwn.ownList, data);
 };
 
 export const ownListDetail = (data: Object) => {
-  return http.get(api.siteOwn.ownListDetail);
+  return http.get(api.siteOwn.ownListDetail, data);
 };
