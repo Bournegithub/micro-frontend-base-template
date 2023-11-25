@@ -6,6 +6,25 @@
     "en": "英文",
     "zh-cn": "中文"
   },
+  "global": {
+    "operations": "操作",
+    "to": "到",
+    "startDate": "开始日期",
+    "endDate": "结束日期"
+  },
+  "action": {
+    "add": "新增",
+    "search": "搜索",
+    "query": "查询",
+    "find": "查找",
+    "del": "删除",
+    "confirm": "确认",
+    "cancel": "取消",
+    "reset": "重置",
+    "export": "导出",
+    "import": "导入",
+    "edit": "编辑"
+  },
   "menu": {
     "vue2": "Vue 2",
     "vue3": "Vue 3",
@@ -18,5 +37,22 @@
     "react18": "React 18",
     "angular11": "Angular 11",
     "multiple": "多个应用"
+  },
+  "menuListForm": {
+    "name": "名称",
+    "appCode": "应用名称",
+    "state": "状态",
+    "createDateTime": "创建时间"
+  },
+  "menuListTable": {
+    "code": "Code",
+    "name": "名称",
+    "state": "状态",
+    "hidden": "是否隐藏",
+    "appName": "应用名称",
+    "path": "路由",
+    "fullPath": "全路由",
+    "createUserNickName": "创建人",
+    "createDateTime": "创建时间"
   }
 }

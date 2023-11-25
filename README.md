@@ -21,7 +21,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 Node版本 v16.19.1
 
-项目访问地址为https://baseFront.yangxuhui.cn/
+项目访问地址为https://basefront.yangxuhui.cn/
 
 VITE_APP_BASE_FLODER = '/'
 

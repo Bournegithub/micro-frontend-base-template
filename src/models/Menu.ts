@@ -5,7 +5,7 @@ interface MenuOptions {
 	icon?: string,
 	children?: MenuOptions[] | [] | null,
 	parentId: string,
-	parentTitle?: string,
+	parentName?: string,
 	path: string,
 	hidden: boolean
 }
@@ -17,7 +17,7 @@ interface MenuTransOptions {
 	icon?: string,
 	children?: string,
 	parentId?: string,
-	parentTitle?: string,
+	parentName?: string,
 	path?: string,
 	hidden?: string
 }
@@ -28,12 +28,12 @@ export type { MenuOptions, MenuTransOptions };
 
 export const defaultMenuOptions = {
 	id: 'id',
-	title: 'title',
+	title: 'name',
 	code: 'code',
 	icon: 'icon',
 	children: 'children',
 	parentId: 'parentId',
-	parentTitle: 'parentTitle',
+	parentName: 'parentName',
 	path: 'path',
 	hidden: false,
 }

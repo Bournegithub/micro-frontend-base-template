@@ -6,6 +6,25 @@
     "en": "English",
     "zh-cn": "Chinese"
   },
+  "global": {
+    "operations": "Operations",
+    "to": "To",
+    "startDate": "Start date",
+    "endDate": "End date"
+  },
+  "action": {
+    "add": "Add",
+    "search": "Search",
+    "query": "Query",
+    "find": "Find",
+    "del": "Delete",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "export": "Export",
+    "import": "Import",
+    "edit": "Edit"
+  },
   "menu": {
     "vue2": "Vue 2",
     "vue3": "Vue 3",
@@ -18,5 +37,22 @@
     "react18": "React 18",
     "angular17": "Angular 17",
     "multiple": "Multiple"
+  },
+  "menuListForm": {
+    "name": "Name",
+    "appCode": "App Name",
+    "state": "State",
+    "createDateTime": "Create time"
+  },
+  "menuListTable": {
+    "code": "Code",
+    "name": "Name",
+    "state": "State",
+    "hidden": "Hidden",
+    "appName": "App Name",
+    "path": "Path",
+    "fullPath": "Full path",
+    "createUserNickName": "Creater",
+    "createDateTime": "Create time"
   }
 }

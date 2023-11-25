@@ -4,7 +4,7 @@ import { deepObjTransField } from '@/common/utils/objTransField';
 import type { RouteRecordRaw } from 'vue-router';
 import { componentMap } from "@/router/routeComponents.ts";
 
-const delFileds = ['id', 'code', 'icon', 'parentId', 'parentTitle'];
+const delFileds = ['id', 'code', 'icon', 'parentId', 'parentName'];
 
 const menu2router = (menus = [] as Array<RouteRecordRaw>, transField = {} as {[key: string]: string}, delFileds = [] as Array<string> ) => {
 	const result = deepObjTransField(menus, transField);

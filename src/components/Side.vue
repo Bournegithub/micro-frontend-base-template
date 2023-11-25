@@ -24,7 +24,7 @@
 		icon: 'icon',
 		children: 'children',
 		parentId: 'parentId',
-		parentTitle: 'parentTitle',
+		parentName: 'parentName',
 		path: 'path',
 	};
 </script>
