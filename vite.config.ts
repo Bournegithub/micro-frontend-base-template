@@ -143,11 +143,11 @@ export default defineConfig(({mode}) => {
       cors: true,
       proxy: {
         '/api': {
-          target: 'https://mock.apifox.cn/m1/3136188-0-default', 
-          changeOrigin: true, 
+          target: 'http://127.0.0.1:7001',
+          changeOrigin: true,
           ws: true, // 支持 websocket
-          rewrite: (path) => path.replace(/^\/api/, '') // 路径重写
-        }
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
       }
     },
   }

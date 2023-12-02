@@ -28,6 +28,26 @@ const routes: Array<RouteRecordRaw> = [
     component: componentMap.login,
   },
   {
+    path: '/register',
+    name: 'Register',
+    meta: {
+      requiresAuth: false,
+      keepAlive: false,
+      layout: 'LayoutNone'
+    },
+    component: componentMap.register,
+  },
+  {
+    path: '/user-center',
+    name: 'User center',
+    meta: {
+      requiresAuth: true,
+      keepAlive: false,
+      layout: 'LayoutHeader'
+    },
+    component: componentMap['user-center'],
+  },
+  {
     path: '/404',
     name: 'Error',
     meta: {

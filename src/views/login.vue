@@ -1,14 +1,14 @@
 <template>
   <div class="login-page">
-    <el-form ref="formRef" :model="formData" :rules="rules">
-      <el-form-item label="username" prop="username">
+    <el-form ref="formRef" label-width="120px" :model="formData" :rules="rules">
+      <el-form-item :label="$t('loginForm.userName')" prop="username">
         <el-input v-model="formData.username"></el-input>
       </el-form-item>
-      <el-form-item label="password" prop="password">
+      <el-form-item :label="$t('loginForm.pwd')" prop="password">
         <el-input v-model="formData.password"></el-input>
       </el-form-item>
       <el-form-item class="submit-wrap">
-        <el-button type="primary" :disabled="submitStatus" @click="submitForm">Submit</el-button>
+        <el-button type="primary" :disabled="submitStatus" @click="submitForm">{{ $t('action.confirm') }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -124,6 +124,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    > .el-form {
+			width: 50%;
+		}
   }
   .submit-wrap {
     text-align: right;

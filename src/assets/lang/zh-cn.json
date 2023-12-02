@@ -10,7 +10,9 @@
     "operations": "操作",
     "to": "到",
     "startDate": "开始日期",
-    "endDate": "结束日期"
+    "endDate": "结束日期",
+    "register": "注册",
+    "login": "登录"
   },
   "action": {
     "add": "新增",
@@ -23,7 +25,23 @@
     "reset": "重置",
     "export": "导出",
     "import": "导入",
-    "edit": "编辑"
+    "edit": "编辑",
+    "submit": "提交"
+  },
+  "loginForm": {
+		"userName": "用户名",
+		"pwd": "密码"
+	},
+  "registerForm": {
+    "userName": "用户名",
+		"pwd": "密码",
+		"confirm": "重复密码",
+		"userNameRequiredMessage": "请输入用户名",
+		"userNameValidateMessage": "8-16位，只能包含数字/字母/下划线",
+    "pwdRequiredMessage": "请输入密码",
+		"pwdValidateMessage": "密码 8-16位，至少1个大写字母，1个小写字母，1个数字和1个特殊字符",
+		"confirmRequiredMessage": "请再次输入密码",
+		"confirmValidateMessage": "两次输入必须一致"
   },
   "menu": {
     "vue2": "Vue 2",

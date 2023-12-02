@@ -61,7 +61,8 @@ router.beforeEach(async (to, from, next) => {
       // 设置当前菜单
       findDefaultActive(navMenus, to.path);
       console.log('debug2-to', to);
-      to.path === '/login' ? next({path: '/'}) : next();
+      // 已有token去往登录注册页面跳回首页
+      to.path === '/login' || to.path === '/register' ? next({path: '/'}) : next();
     }
   } else {
     console.log('first-to', to);
@@ -77,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
     // } else {
     //   next();
     // }
-    if ( to.path === '/login') {
+    if ( to.path === '/login' || to.path === '/register') {
       // console.log('to.path', to.path);
       next();
     // 增加预渲染情况下路由变成/login/的情况，解决redirect无限重复循环

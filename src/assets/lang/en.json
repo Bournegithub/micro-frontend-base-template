@@ -10,7 +10,9 @@
     "operations": "Operations",
     "to": "To",
     "startDate": "Start date",
-    "endDate": "End date"
+    "endDate": "End date",
+    "register": "Register",
+    "login": "Login"
   },
   "action": {
     "add": "Add",
@@ -23,7 +25,23 @@
     "reset": "Reset",
     "export": "Export",
     "import": "Import",
-    "edit": "Edit"
+    "edit": "Edit",
+		"submit": "Submit"
+  },
+	"loginForm": {
+		"userName": "User name",
+		"pwd": "Password"
+	},
+  "registerForm": {
+    "userName": "User name",
+		"pwd": "Password",
+		"confirm": "Confirm",
+		"userNameRequiredMessage": "Please input user name",
+		"userNameValidateMessage": "The username consists of 8-16 digits, letters, or underscores",
+		"pwdRequiredMessage": "Please input password",
+		"pwdValidateMessage": "The password consists of 8-16 digits, at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
+		"confirmRequiredMessage": "Please input password again",
+		"confirmValidateMessage": "Two inputs must be consistent"
   },
   "menu": {
     "vue2": "Vue 2",

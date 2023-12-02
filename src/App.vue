@@ -5,10 +5,12 @@
   import en from 'element-plus/dist/locale/en.mjs';
   import { useGlobalStore } from '@/store/index';
   import Layout from '@/components/Layout.vue';
+  import LayoutHeader from '@/components/LayoutHeader.vue';
   
   export default defineComponent({
     components: {
       Layout,
+      LayoutHeader,
     },
     setup() {
       const globalStore = useGlobalStore();

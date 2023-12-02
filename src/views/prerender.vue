@@ -9,5 +9,6 @@
 		meta: [
 			{ name: 'description', content: 'prerender page' },
 		],
-	})
+	});
+	
 </script>

@@ -13,6 +13,7 @@ import "./assets/icons/iconfont.js";
 import App from "./App.vue";
 
 const app = createApp(App);
+
 const head = createHead();
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
