@@ -30,17 +30,26 @@
   },
 	"loginForm": {
 		"userName": "User name",
-		"pwd": "Password"
+    "userNamePlaceholder": "Please input user name",
+    "userNameRequiredMessage": "User name is required",
+		"userNameValidateMessage": "The user name consists of 8-16 digits, letters, or underscores",
+		"pwd": "Password",
+    "pwdPlaceholder": "Please input password",
+    "pwdRequiredMessage": "Password is required",
+		"pwdValidateMessage": "Password format error"
 	},
   "registerForm": {
     "userName": "User name",
 		"pwd": "Password",
 		"confirm": "Confirm",
-		"userNameRequiredMessage": "Please input user name",
+    "userNamePlaceholder": "Please input user name",
+		"userNameRequiredMessage": "User name is required",
 		"userNameValidateMessage": "The username consists of 8-16 digits, letters, or underscores",
-		"pwdRequiredMessage": "Please input password",
+		"pwdPlaceholder": "Please input password",
+    "pwdRequiredMessage": "Password is required",
 		"pwdValidateMessage": "The password consists of 8-16 digits, at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
-		"confirmRequiredMessage": "Please input password again",
+		"confirmPlaceholder": "Please input password again",
+    "confirmRequiredMessage": "Confirm is required",
 		"confirmValidateMessage": "Two inputs must be consistent"
   },
   "menu": {

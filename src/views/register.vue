@@ -15,53 +15,60 @@
 				</template>
 			</el-dropdown>
 		</div>
-		<el-form
-			ref="signFormRef"
-			:model="formData"
-			:rules="rules"
-			label-width="120px"
-			class="demo-formData"
-			:size="formSize"
-			status-icon
-		>
-			<el-form-item :label="$t('registerForm.userName')" prop="userName">
-				<el-input v-model="formData.userName" />
-			</el-form-item>
-			<el-form-item :label="$t('registerForm.pwd')" prop="pwd">
-				<el-input
-					v-model="formData.pwd"
-					type="password"
-					placeholder="Please input password"
-					show-password
-				/>
-			</el-form-item>
-			<el-form-item :label="$t('registerForm.confirm')" prop="confirm">
-				<el-input
-					v-model="formData.confirm"
-					type="password"
-					placeholder="Please input password"
-					show-password
-				/>
-			</el-form-item>
-			<el-form-item>
-				<el-button :disabled="submitStatus" type="primary" @click="submitForm()">
-					{{ $t('action.confirm') }}
-				</el-button>
-			</el-form-item>
-		</el-form>
+		<div class="register-wrap">
+			<div class="form-title"><h2>{{ $t('global.register') }}</h2></div>
+			<el-form
+				ref="signFormRef"
+				:model="formData"
+				:rules="rules"
+				label-width="120px"
+				class="demo-formData"
+				:size="formSize"
+				status-icon
+			>
+				<el-form-item :label="$t('registerForm.userName')" prop="userName">
+					<el-input
+						v-model="formData.userName"
+						:placeholder="$t('registerForm.userNamePlaceholder')"
+					/>
+				</el-form-item>
+				<el-form-item :label="$t('registerForm.pwd')" prop="pwd">
+					<el-input
+						v-model="formData.pwd"
+						type="password"
+						:placeholder="$t('registerForm.pwdPlaceholder')"
+						show-password
+					/>
+				</el-form-item>
+				<el-form-item :label="$t('registerForm.confirm')" prop="confirm">
+					<el-input
+						v-model="formData.confirm"
+						type="password"
+						:placeholder="$t('registerForm.confirmPlaceholder')"
+						show-password
+					/>
+				</el-form-item>
+				<el-form-item>
+					<el-button :disabled="submitStatus" type="primary" @click="submitForm()">
+						{{ $t('action.confirm') }}
+					</el-button>
+				</el-form-item>
+			</el-form>
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, computed, getCurrentInstance } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ElForm } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { useGlobalStore } from '@/store/index';
 import { checkUserName, checkPassword } from '@/common/utils/reg';
 import { register } from '@/server/request';
-
-const { proxy } = getCurrentInstance();
+import useCurrentInstance from "@/hooks/useCurrentInstance";
+const { globalProperties } = useCurrentInstance();
+// const { proxy } = getCurrentInstance();
 const { t, locale } = useI18n();
 const router = useRouter();
 
@@ -118,15 +125,15 @@ const rules = reactive<FormRules>({
   userName: [
     { required: true, message: t('registerForm.userNameRequiredMessage'), trigger: 'blur' },
     // { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
-		// { validator: validateUserName, trigger: 'blur' },
+		{ validator: validateUserName, trigger: 'blur' },
   ],
   pwd: [
     { required: true, message: t('registerForm.pwdRequiredMessage'), trigger: 'blur' },
-		// { validator: validatePwd, trigger: 'blur' },
+		{ validator: validatePwd, trigger: 'blur' },
   ],
   confirm: [
     { required: true, message: t('registerForm.confirmRequiredMessage'), trigger: 'blur' },
-		// { validator: validateConfirm, trigger: 'blur' },
+		{ validator: validateConfirm, trigger: 'blur' },
   ],
 })
 
@@ -150,7 +157,8 @@ const userRegister = (data: Object) => {
 	submitStatus.value = true;
 	register(data).then((res) => {
 		if (res) {
-			proxy.$message.success('注册成功');
+			// proxy.$message.success('注册成功');
+			globalProperties.$message.success('注册成功');
 			router.push('/login');
 		}
 	}).catch().finally(() => {
@@ -237,8 +245,14 @@ const submitForm = () => {
 				height: 24px;
 			}
 		}
-		> .el-form {
+		.register-wrap {
 			width: 50%;
+			> .form-title {
+				padding-left: 120px;
+				> h2 {
+					text-align: center;
+				}
+			}
 		}
   }
 </style>

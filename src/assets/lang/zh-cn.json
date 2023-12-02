@@ -30,17 +30,26 @@
   },
   "loginForm": {
 		"userName": "用户名",
-		"pwd": "密码"
+    "userNamePlaceholder": "请输入用户名",
+    "userNameRequiredMessage": "用户名必填",
+		"userNameValidateMessage": "8-16位，只能包含数字/字母/下划线",
+		"pwd": "密码",
+    "pwdPlaceholder": "请输入密码",
+    "pwdRequiredMessage": "密码必填",
+		"pwdValidateMessage": "密码格式错误"
 	},
   "registerForm": {
     "userName": "用户名",
 		"pwd": "密码",
-		"confirm": "重复密码",
-		"userNameRequiredMessage": "请输入用户名",
+		"confirm": "重复",
+    "userNamePlaceholder": "请输入用户名",
+		"userNameRequiredMessage": "用户名必填",
 		"userNameValidateMessage": "8-16位，只能包含数字/字母/下划线",
-    "pwdRequiredMessage": "请输入密码",
+    "pwdPlaceholder": "请输入密码",
+    "pwdRequiredMessage": "密码必填",
 		"pwdValidateMessage": "密码 8-16位，至少1个大写字母，1个小写字母，1个数字和1个特殊字符",
-		"confirmRequiredMessage": "请再次输入密码",
+    "confirmPlaceholder": "请再次输入密码",
+		"confirmRequiredMessage": "密码必填",
 		"confirmValidateMessage": "两次输入必须一致"
   },
   "menu": {
