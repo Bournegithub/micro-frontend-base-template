@@ -29,7 +29,7 @@ export default defineConfig(({mode}) => {
         outputDir: path.join(__dirname, 'basefront'),
         indexPath: path.join(__dirname, 'basefront', 'index.html'),
         // Required - Routes to render.
-        routes: ['/login', '/own/prerender'],
+        routes: ['/login', '/register', '/own/prerender'],
         /*
         #nginx配置
         location /login {

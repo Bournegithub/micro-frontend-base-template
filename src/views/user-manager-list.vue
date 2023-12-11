@@ -74,9 +74,9 @@
     <div class="table-wrap">
       <el-table :data="tableData" style="width: 100%">
         <el-table-column
-          v-for="column in demoListTableCloumns"
+          v-for="column in userListTableCloumns"
           :key="column.prop"
-          :label="$t(`menuListTable.${column.label}`)"
+          :label="$t(`userListTable.${column.label}`)"
           :prop="column.prop"
           :width="column.width"
         >
@@ -84,9 +84,9 @@
         <el-table-column fixed="right" :label="$t('global.operations')" width="120">
           <template #default>
             <el-button link type="primary" size="small" @click="handleClick"
-              >Detail</el-button
+              >{{ $t('action.status') }}</el-button
             >
-            <el-button link type="primary" size="small">Edit</el-button>
+            <el-button link type="primary" size="small">{{ $t('action.del') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -105,12 +105,14 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeMount } from "vue";
 import { useHead } from "@unhead/vue";
-import { ownList } from "@/server/request";
-import { demoListTableCloumns } from '@/common/model/demoList';
+import { userPage } from "@/server/request";
+import { userListTableCloumns } from '@/common/model/userList';
 import AddEditModal from './components/demoListModal.vue';
 
+// updateUser, delUser
+
 useHead({
-  title: "own list",
+  title: "User manager list",
   meta: [{ name: "description", content: "own list page" }],
 });
 const rowGutter = 20;
@@ -130,13 +132,18 @@ const paginationRecord = reactive({
 });
 const fetch = () => {
   console.log("fetch");
-  const params = {};
-  ownList(params)
-    .then((res) => {
-      tableData = res.data;
-    })
-    .catch()
-    .finally();
+  const params = {
+    page: paginationRecord.page,
+    limit: paginationRecord.limit,
+  };
+  userPage(params).then((res) => {
+    console.log('res', res)
+    // console.log('res-list', res.list)
+    tableData = res.list;
+    paginationRecord.total = res.total;
+  }).catch().finally(() => {
+    paginationRecord.page = paginationRecord.page + 1;
+  });
 };
 const handleEdit = () => {
 	console.log('handleEdit');
@@ -155,6 +162,7 @@ const handleExport = () => {
 const handleQuery = () => {
   console.log("query");
   console.log('formRecord', formRecord);
+  fetch();
 };
 onBeforeMount(() => {
   fetch();

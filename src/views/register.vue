@@ -49,9 +49,14 @@
 					/>
 				</el-form-item>
 				<el-form-item>
-					<el-button :disabled="submitStatus" type="primary" @click="submitForm()">
-						{{ $t('action.confirm') }}
-					</el-button>
+					<div class="btn-wrap">
+						<el-space wrap>
+							<el-link :underline="false" @click="toLogin">{{ $t('global.haveAccount') }}</el-link>
+							<el-button :disabled="submitStatus" type="primary" @click="submitForm()">
+								{{ $t('action.confirm') }}
+							</el-button>
+						</el-space>
+					</div>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -59,11 +64,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, computed } from 'vue';
+import { reactive, ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ElForm } from 'element-plus';
 import { useI18n } from 'vue-i18n';
-import { useGlobalStore } from '@/store/index';
 import { checkUserName, checkPassword } from '@/common/utils/reg';
 import { register } from '@/server/request';
 import useCurrentInstance from "@/hooks/useCurrentInstance";
@@ -137,16 +141,14 @@ const rules = reactive<FormRules>({
   ],
 })
 
-const globalStore = useGlobalStore();
 const i18nCommand = (command: string) => {
 	locale.value = command;
-	globalStore.setLanguage(command);
 	localStorage.setItem('language', command);
 }
 const languageDisabled = computed(() => {
 	return (language: string) => {
 		let result = false;
-		if (language === globalStore.language) {
+		if (language === localStorage.getItem('language')) {
 			result = true;
 		}
 		return result;
@@ -171,12 +173,23 @@ const submitForm = () => {
 		if (valid) {
 			// Submit form data
 			const { userName, pwd} = formData;
-			userRegister({userName, pwd});
+			userRegister({ userName, pwd, language: localStorage.getItem('language') });
 		} else {
 			return false;
 		}
 	});
 }
+
+const toLogin = () => {
+	router.push('/login');
+}
+onMounted(() => {
+	const systemLanguage = navigator.language.toLowerCase();
+	if (systemLanguage) {
+		localStorage.setItem('language', systemLanguage || 'zh-cn');
+	}
+})
+// const systemLanguage = navigator.language.toLowerCase();
 
 </script>
 <!-- <i18n>
@@ -255,4 +268,12 @@ const submitForm = () => {
 			}
 		}
   }
+	.btn-wrap {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		> .el-space {
+			margin-right: -8px;
+		}
+	}
 </style>

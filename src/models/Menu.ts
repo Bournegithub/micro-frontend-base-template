@@ -26,6 +26,7 @@ interface MenuTransOptions {
 
 export type { MenuOptions, MenuTransOptions };
 
+// 字段自定义映射
 export const defaultMenuOptions = {
 	id: 'id',
 	title: 'name',
@@ -35,5 +36,5 @@ export const defaultMenuOptions = {
 	parentId: 'parentId',
 	parentName: 'parentName',
 	path: 'path',
-	hidden: false,
+	hidden: 'hidden',
 }

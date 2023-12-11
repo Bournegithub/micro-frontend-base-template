@@ -3,7 +3,6 @@
   import { defineComponent, computed } from 'vue';
   import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
   import en from 'element-plus/dist/locale/en.mjs';
-  import { useGlobalStore } from '@/store/index';
   import Layout from '@/components/Layout.vue';
   import LayoutHeader from '@/components/LayoutHeader.vue';
   
@@ -13,10 +12,9 @@
       LayoutHeader,
     },
     setup() {
-      const globalStore = useGlobalStore();
       const currentLocal = computed(() => {
         let result = en;
-        if (globalStore.language === 'zh-cn') {
+        if (localStorage.getItem('language') === 'zh-cn') {
           result = zhCn;
         }
         return result;

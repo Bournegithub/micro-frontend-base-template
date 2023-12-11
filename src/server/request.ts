@@ -13,6 +13,10 @@ export const menus = (data: Object) => {
   return http.get(api.global.menus, data);
 };
 
+export const userInfo = (data: Object) => {
+  return http.get(api.global.userInfo, data);
+};
+
 export const ownList = (data: Object) => {
   return http.get(api.siteOwn.ownList, data);
 };
@@ -20,3 +24,17 @@ export const ownList = (data: Object) => {
 export const ownListDetail = (data: Object) => {
   return http.get(api.siteOwn.ownListDetail, data);
 };
+
+export const userPage = (data: Object) => {
+  return http.get(api.userManager.userPage, data);
+};
+
+export const updateUser = (data: Object) => {
+  return http.post(api.userManager.updateUser, data);
+};
+
+export const delUser = (data: Object) => {
+  return http.get(api.userManager.delUser, data);
+};
+
+

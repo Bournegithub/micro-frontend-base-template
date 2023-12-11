@@ -9,18 +9,21 @@ const router = createRouter({
   routes,
 });
 
-let noDynamicRouter = true;
+// 是否加载过权限路由
+let permissionRoutesLoaded = false;
 
 // 全局前置路由守卫
 router.beforeEach(async (to, from, next) => {
-  console.log('base-from', from);
-  console.log('base-to', to);
+  console.log('beforeEach', to, from);
+  
   const token = localStorage.getItem('Authorization');
   const menusStore = useMenusStore();
   // 获取权限路由
   const permissionsRouter = menusStore.getPermissionsRouter;
+  console.log('permissionRoutesLoaded', permissionRoutesLoaded);
   // 获取菜单
   const navMenus = menusStore.getMenus;
+  // console.log('navMenus', navMenus);
   // 设置当前菜单函数
   const findDefaultActive = (menu = [] as Array<MenuOptions>, path: string) => {
     menu.forEach((item) => {
@@ -33,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
       slicePath = slicePath.substring(index + 1, slicePath.length);
       // console.log('slicePath', slicePath);
       // console.log('item.path', item.path);
-      if (item.parentId === '0' ? item.path === path : item.path === slicePath) {
+      if ((!item.parentId ? item.path === path : item.path === slicePath) && item.hidden === false) {
         menusStore.setDefaultActive(item.code);
       } else {
         if (item.children && item.children.length > 0) {
@@ -43,60 +46,37 @@ router.beforeEach(async (to, from, next) => {
     });
   };
   if (token && token !== '') {
-    if (noDynamicRouter) {
-      permissionsRouter.forEach((item) => {
+    if (permissionRoutesLoaded) {
+      // 已加载过权限菜单
+      // 设置当前菜单code
+      findDefaultActive(navMenus, to.path);
+      to.path === '/login' || to.path === '/register' ? next({path: '/'}) : next();
+    } else {
+      // console.log('debug0-to', to);
+      // 清除上一用户登出后index的redirect重定向值
+      router.removeRoute('index');
+      // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个(如有index页面则无需处理)
+      // 获取第一个有效路由
+      router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
+      // 加载动态菜单
+      permissionsRouter.forEach((item: any) => {
         router.addRoute(item);
       });
-      // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个
-      console.log('permissionsRouter', permissionsRouter);
-      router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       // 错误捕获页面在此时添加
       router.addRoute(catchRoute);
-      noDynamicRouter = false;
-      // 设置当前菜单
+      // 设置当前菜单code
       findDefaultActive(navMenus, to.path);
-      console.log('debug1-to', to);
+      // 设置权限菜单已加载
+      permissionRoutesLoaded = true;
       next({ ...to, replace: true });
-    } else {
-      // 设置当前菜单
-      findDefaultActive(navMenus, to.path);
-      console.log('debug2-to', to);
-      // 已有token去往登录注册页面跳回首页
-      to.path === '/login' || to.path === '/register' ? next({path: '/'}) : next();
     }
   } else {
-    console.log('first-to', to);
+    // 处理切换用户登录时permissionRoutesLoaded为true未能重新加载路由的问题
+    permissionRoutesLoaded = false;
     // 没有token的情况下判断是不是跳往登陆,避免死循环
-    // 判断页面requiresAuth是否需要鉴权,不需要则直接跳转,需要则跳转到login
-    // if (to.meta.requiresAuth) {
-    //   next({
-    //     path: '/login',
-    //     query:{
-    //       redirect: to.fullPath,
-    //     }
-    //   });
-    // } else {
-    //   next();
-    // }
     if ( to.path === '/login' || to.path === '/register') {
-      // console.log('to.path', to.path);
       next();
-    // 增加预渲染情况下路由变成/login/的情况，解决redirect无限重复循环
-    }
-    // else if (to.path === '/login/') {
-    //   const strKey = '?redirect=';
-    //   let str = to.fullPath.replace(strKey, ' ');
-    //   const redirectStr = str.substring(str.lastIndexOf(' ') + 1, str.length);
-    //   // 截取最后一个=号之后的内容,以免重复
-    //   next({
-    //     path: '/login',
-    //     query:{
-    //       redirect: redirectStr,
-    //     }
-    //   });
-    // }  
-    else {
-      console.log('to', to);
+    } else {
       next({
         path: '/login',
         query:{

@@ -1,0 +1,357 @@
+[
+	{
+		"id": "100001",
+		"code": "11",
+		"name": "own",
+		"icon": "House",
+		"children": [
+			{
+				"id": "10000100001",
+				"code": "100100",
+				"name": "prerender",
+				"icon": "Tickets",
+				"children": [],
+				"meta": {
+					"requiresAuth": true,
+					"keepAlive": true,
+					"layout": "Layout"
+				},
+				"parentId": "100001",
+				"parentTitle": "own",
+				"path": "prerender",
+				"fullPath": "/own/prerender",
+				"component": "prerender",
+				"hidden": false
+			},
+			{
+				"id": "10000100002",
+				"code": "100200",
+				"name": "user-manager",
+				"icon": "Document",
+				"children": [
+					{
+						"id": "1000010000200001",
+						"code": "10020000",
+						"name": "user-manager-list",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100002",
+						"parentTitle": "user-manager",
+						"path": "",
+						"fullPath": "/own/user-manager",
+						"component": "user-manager-list",
+						"hidden": true
+					},
+					{
+						"id": "1000010000200002",
+						"code": "10020001",
+						"name": "user-manager-detail",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100002",
+						"parentTitle": "user-manager",
+						"path": "detail/:id",
+						"fullPath": "/own/user-manager/detail/:id",
+						"component": "user-manager-detail",
+						"hidden": true
+					},
+					{
+						"id": "1000010000200003",
+						"code": "10020002",
+						"name": "user-manager-edit",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100002",
+						"parentTitle": "user-manager",
+						"path": "edit/:id",
+						"fullPath": "/own/user-manager/edit/:id",
+						"component": "user-manager-edit",
+						"hidden": true
+					}
+				],
+				"meta": {
+					"requiresAuth": true,
+					"keepAlive": true,
+					"layout": "Layout"
+				},
+				"parentId": "100001",
+				"parentTitle": "own",
+				"path": "user-manager",
+				"fullPath": "/own/user-manager",
+				"hidden": true
+			},
+			{
+				"id": "10000100003",
+				"code": "100300",
+				"name": "role-manager",
+				"icon": "Tickets",
+				"children": [
+					{
+						"id": "1000010000300001",
+						"code": "100300",
+						"name": "role-manager-list",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100003",
+						"parentTitle": "role-manager",
+						"path": "",
+						"fullPath": "/own/role-manager",
+						"component": "role-manager-list",
+						"hidden": true
+					},
+					{
+						"id": "1000010000300002",
+						"code": "100300",
+						"name": "role-manager-detail",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100003",
+						"parentTitle": "role-manager",
+						"path": "detail/:id",
+						"fullPath": "/own/role-manager/detail/:id",
+						"component": "role-manager-detail",
+						"hidden": true
+					},
+					{
+						"id": "1000010000300003",
+						"code": "100300",
+						"name": "role-manager-add",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100003",
+						"parentTitle": "role-manager",
+						"path": "add",
+						"fullPath": "/own/role-manager/add",
+						"component": "role-manager-add",
+						"hidden": true
+					},
+					{
+						"id": "1000010000300004",
+						"code": "100300",
+						"name": "role-manager-edit",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100003",
+						"parentTitle": "role-manager",
+						"path": "edit/:id",
+						"fullPath": "/own/role-manager/edit/:id",
+						"component": "role-manager-edit",
+						"hidden": true
+					}
+				],
+				"meta": {
+					"requiresAuth": true,
+					"keepAlive": true,
+					"layout": "Layout"
+				},
+				"parentId": "100001",
+				"parentTitle": "own",
+				"path": "role-manager",
+				"fullPath": "/own/role-manager",
+				"hidden": true
+			},
+			{
+				"id": "10000100004",
+				"code": "100400",
+				"name": "menu-manager",
+				"icon": "Tickets",
+				"children": [
+					{
+						"id": "1000010000400001",
+						"code": "100400",
+						"name": "menu-manager-list",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100004",
+						"parentTitle": "menu-manager",
+						"path": "",
+						"fullPath": "/own/menu-manager",
+						"component": "menu-manager-list",
+						"hidden": true
+					},
+					{
+						"id": "1000010000400002",
+						"code": "100400",
+						"name": "menu-manager-detail",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100004",
+						"parentTitle": "menu-manager",
+						"path": "detail/:id",
+						"fullPath": "/own/menu-manager/detail/:id",
+						"component": "menu-manager-detail",
+						"hidden": true
+					},
+					{
+						"id": "1000010000400003",
+						"code": "100400",
+						"name": "menu-manager-add",
+						"icon": "Document",
+						"children": [],
+						"meta": {
+							"requiresAuth": true,
+							"keepAlive": true,
+							"layout": "Layout"
+						},
+						"parentId": "10000100004",
+						"parentTitle": "menu-manager",
+						"path": "add",
+						"fullPath": "/own/menu-manager/add",
+						"component": "menu-manager-add",
+						"hidden": true
+					}
+				],
+				"meta": {
+					"requiresAuth": true,
+					"keepAlive": true,
+					"layout": "Layout"
+				},
+				"parentId": "100001",
+				"parentTitle": "own",
+				"path": "menu-manager",
+				"fullPath": "/own/menu-manager",
+				"hidden": true
+			}
+		],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/own",
+		"fullPath": "/own",
+		"hidden": false
+	},
+	{
+		"id": "100002",
+		"code": "22",
+		"name": "vue2",
+		"icon": "icon-Vue",
+		"meta": {
+			"requiresAuth": true,
+			"keepAlive": true,
+			"layout": "Layout"
+		},
+		"children": [],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/vue2",
+		"fullPath": "/vue2",
+		"component": "vue2",
+		"hidden": false
+	},
+	{
+		"id": "100003",
+		"code": "33",
+		"name": "vue3",
+		"meta": {
+			"requiresAuth": true,
+			"keepAlive": true,
+			"layout": "Layout"
+		},
+		"icon": "icon-Vue",
+		"children": [],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/vue3",
+		"fullPath": "/vue3",
+		"component": "vue3",
+		"hidden": false
+	},
+	{
+		"id": "100004",
+		"code": "44",
+		"name": "nuxt3",
+		"meta": {
+			"requiresAuth": true,
+			"keepAlive": true,
+			"layout": "Layout"
+		},
+		"icon": "icon-nuxt",
+		"children": [],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/nuxt3",
+		"fullPath": "/nuxt3",
+		"component": "nuxt3",
+		"hidden": false
+	},
+	{
+		"id": "100005",
+		"code": "55",
+		"name": "react18",
+		"icon": "icon-React",
+		"meta": {
+			"requiresAuth": true,
+			"keepAlive": true,
+			"layout": "Layout"
+		},
+		"children": [],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/react18",
+		"fullPath": "/react18",
+		"component": "react18",
+		"hidden": false
+	},
+	{
+		"id": "100006",
+		"code": "66",
+		"name": "next14",
+		"icon": "icon-nextjs",
+		"meta": {
+			"requiresAuth": true,
+			"keepAlive": true,
+			"layout": "Layout"
+		},
+		"children": [],
+		"parentId": null,
+		"parentTitle": null,
+		"path": "/next14",
+		"fullPath": "/next14",
+		"component": "next14",
+		"hidden": false
+	}
+]

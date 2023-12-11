@@ -18,22 +18,27 @@
 		<div class="login-wrap">
 			<div class="form-title"><h2>{{ $t('global.login') }}</h2></div>
 			<el-form ref="formRef" label-width="120px" :model="formData" :rules="rules">
-				<el-form-item :label="$t('loginForm.userName')" prop="username">
+				<el-form-item :label="$t('loginForm.userName')" prop="userName">
 					<el-input
-						v-model="formData.username"
+						v-model="formData.userName"
 						:placeholder="$t('loginForm.userNamePlaceholder')"
 					/>
 				</el-form-item>
-				<el-form-item :label="$t('loginForm.pwd')" prop="password">
+				<el-form-item :label="$t('loginForm.pwd')" prop="pwd">
 					<el-input
-						v-model="formData.password"
+						v-model="formData.pwd"
 						type="password"
 						:placeholder="$t('loginForm.pwdPlaceholder')"
 						show-password
 					/>
 				</el-form-item>
-				<el-form-item class="submit-wrap">
-					<el-button type="primary" :disabled="submitStatus" @click="submitForm">{{ $t('action.confirm') }}</el-button>
+				<el-form-item>
+					<div class="btn-wrap">
+						<el-space wrap>
+							<el-link :underline="false" @click="toRegister">{{ $t('global.register') }}</el-link>
+							<el-button type="primary" :disabled="submitStatus" @click="submitForm">{{ $t('action.confirm') }}</el-button>
+						</el-space>
+					</div>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -59,8 +64,8 @@ type FormRules = InstanceType<typeof ElForm>
 export default {
   setup() {
     const formData = ref({
-      username: '',
-			password: '',
+      userName: '',
+			pwd: '',
     });
     const { globalProperties } = useCurrentInstance();
     const globalStore = useGlobalStore();
@@ -93,12 +98,12 @@ export default {
       }
     }
     const rules = reactive<FormRules>({
-      username: [
+      userName: [
         { required: true, message: t('loginForm.userNameRequiredMessage'), trigger: 'blur' },
         // { min: 3, max: 16, message: 'Length should be between 3 and 16', trigger: 'blur' }
 				{ validator: validateUserName, trigger: 'blur' },
       ],
-			password: [
+			pwd: [
         { required: true, message: t('loginForm.pwdRequiredMessage'), trigger: 'blur' },
         // { min: 8, max: 12, message: 'Length should be between 8 and 12', trigger: 'blur' }
 				{ validator: validatePwd, trigger: 'blur' },
@@ -120,33 +125,35 @@ export default {
       submitStatus.value = true;
       login(data).then((res) => {
         if (res) {
-          globalProperties.$message.success('登录成功');
-          const { token , userInfo } = res;
-          globalStore.setToken(token);
-          globalStore.setUserinfo(userInfo);
-          globalStore.setLanguage(userInfo.language || 'en');
-          // 存储到localstorage
+					console.log('res', res);
+					const { token } = res;
+					// 设置token
           localStorage.setItem('Authorization', token);
-          localStorage.setItem('language', userInfo.language || 'en');
-          // const userCopy = JSON.stringify(userInfo);
-          // localStorage.setItem('userInfo', userCopy);
-          // console.log('redirectUrlStr', redirectUrlStr);
+					// 获取用户信息
+					globalStore.fetchUserInfo().then(() => {				
+						globalProperties.$message.success('登录成功');
+					}).catch().finally();
           // 获取菜单
           menusStore.fetchMenus().then(() => {
+						console.log('redirectUrlStr', redirectUrlStr);
             if (redirectUrlStr.value) {
               router.push({
                 path: redirectUrlStr.value,
               });
             } else {
+							// 首次登录完善个人资料
+							// router.push('/user-center');
               router.push('/');
             }
           }).catch().finally();
-          
         }
       }).catch().finally(() => {
         submitStatus.value = false;
       });
     };
+		const toRegister = () => {
+			router.push('/register');
+		};
     const seoHead = useHead({
       title: 'My awesome site login page',
       meta: [
@@ -155,13 +162,12 @@ export default {
     });
 		const i18nCommand = (command: string) => {
 			locale.value = command;
-			globalStore.setLanguage(command);
 			localStorage.setItem('language', command);
 		};
 		const languageDisabled = computed(() => {
 			return (language: string) => {
 				let result = false;
-				if (language === globalStore.language) {
+				if (language === localStorage.getItem('language')) {
 					result = true;
 				}
 				return result;
@@ -175,6 +181,7 @@ export default {
       userLogin,
       redirectUrlStr,
       submitStatus,
+			toRegister,
       seoHead,
 			i18nCommand,
 			languageDisabled,
@@ -213,7 +220,12 @@ export default {
 			}
 		}
   }
-  .submit-wrap {
-    text-align: right;
-  }
+	.btn-wrap {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		> .el-space {
+			margin-right: -8px;
+		}
+	}
 </style>

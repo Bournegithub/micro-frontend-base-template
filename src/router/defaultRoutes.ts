@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/404',
-    name: 'Error',
+    name: 'Error404',
     meta: {
       requiresAuth: false,
       keepAlive: false,
@@ -60,7 +60,8 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const catchRoute = {
-  //任意路由
+  // 任意路由
+  name: 'Error',
   path: '/:pathMatch(.*)*',
   redirect: '/404',
 }

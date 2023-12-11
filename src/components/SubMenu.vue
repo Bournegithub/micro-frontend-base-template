@@ -1,9 +1,10 @@
 <template>
-  <!-- 有子节点，使用 el-sub-menu 渲染 -->
+  <!-- 有子节点，且节点hidden有不为true, 使用 el-sub-menu 渲染 -->
   <el-sub-menu
     v-if="
       item[`${menuOptions.children}`] &&
-      item[`${menuOptions.children}`].length > 0
+      item[`${menuOptions.children}`].length > 0 &&
+      !item[`${menuOptions.hidden}`]
     "
     :index="item[`${menuOptions.code}`]"
   >
@@ -25,6 +26,28 @@
       :menu-options="menuOptions"
     />
   </el-sub-menu>
+  <!-- 有子节点，节点hidden为true且子节点hidden全部为true(此处是约定), 使用 el-menu-item 渲染 -->
+  <template
+      v-else-if="item[`${menuOptions.children}`] &&
+      item[`${menuOptions.children}`].length > 0 &&
+      item[`${menuOptions.hidden}`]"
+      :index="item[`${menuOptions.code}`]"
+    >
+    <el-menu-item
+      :index="item[`${menuOptions.code}`]"
+      @click="jump(item)"
+    >
+      <SvgIcon
+        v-if="item[`${menuOptions.icon}`]?.startsWith('icon-')"
+        :icon-name="item[`${menuOptions.icon}`]"
+      />
+      <el-icon v-else>
+        <Component :is="item[`${menuOptions.icon}`]" />
+      </el-icon>
+      {{ item.title }}
+      <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
+    </el-menu-item>
+  </template>
   <!-- 没有子节点，使用 el-menu-item 渲染 -->
   <template v-else>
     <el-menu-item

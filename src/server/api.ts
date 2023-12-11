@@ -2,12 +2,18 @@ export default {
   global: {
     login: '/sys/login',
     register: '/sys/register',
-    permissions: '/sys/user/permissions',
-    menus: '/sys/menu/nav',
+    menus: '/user/nav',
+    userInfo: '/user/info',
+    permissions: '/user/permissions',
   },
   siteOwn: {
     ownList: '/sys/default/page',
     ownListDetail: '/sys/default/page/:id',
     prerender: '',
+  },
+  userManager: {
+    userPage: '/user/page',
+    updateUser: '/user/update',
+    delUser: '/user/del',
   },
 };

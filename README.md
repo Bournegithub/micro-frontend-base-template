@@ -25,6 +25,10 @@ Node版本 v16.19.1
 
 VITE_APP_BASE_FLODER = '/'
 
-路由createWebHistory的baseurl为''
+路由createWebHistory的baseurl为'/'
+
+动态权限路由/动态页面组件
+
+登录/注册/上传/用户管理/菜单管理/角色管理
 
 

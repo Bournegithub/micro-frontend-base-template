@@ -34,7 +34,7 @@
 					</div>
 					<template #dropdown>
 						<el-dropdown-menu>
-							<el-dropdown-item command="loginOut">退出</el-dropdown-item>
+							<el-dropdown-item command="loginOut">{{ $t('global.exit') }}</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -47,6 +47,7 @@
 import { reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGlobalStore } from '@/store/index';
+import { useMenusStore } from '@/store/menu';
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n();
@@ -74,6 +75,7 @@ let userInfo: any = reactive({});
 
 // 从 store 获取
 const globalStore = useGlobalStore();
+const menusStore = useMenusStore();
 const storeUser = globalStore.userInfo;
 console.log('storeUser', storeUser);
 if (storeUser.realName) {
@@ -81,15 +83,31 @@ if (storeUser.realName) {
 }
 const i18nCommand = (command: string) => {
 	locale.value = command;
-	globalStore.setLanguage(command);
 	localStorage.setItem('language', command);
 }
 const router = useRouter();
+
+const removeRouter = () => {
+	const routes = router.getRoutes();
+	routes.map((item: any) => {
+		if (!['index', 'Login', 'Register', 'User center', 'Error404', 'Error'].includes(item.name)) {
+			router.removeRoute(item.name);
+		} else if (item.path === '/') {
+			item.redirect = null;
+		}
+		
+	});
+}
 const userCommand = (command: string) => {
 	switch (command) {
   case 'loginOut':
 		localStorage.removeItem('Authorization');
-		localStorage.removeItem('userInfo');
+		localStorage.removeItem('language');
+		localStorage.removeItem('menus');
+		localStorage.removeItem('permissionRoutesLoaded');
+		removeRouter();
+		globalStore.$reset();
+		menusStore.$reset();
 		router.push('/login');
     break;
   default:
@@ -100,7 +118,7 @@ const userCommand = (command: string) => {
 const languageDisabled = computed(() => {
 	return (language: string) => {
 		let result = false;
-		if (language === globalStore.language) {
+		if (language === localStorage.getItem('language')) {
 			result = true;
 		}
 		return result;

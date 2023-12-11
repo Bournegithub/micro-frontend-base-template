@@ -12,7 +12,9 @@
     "startDate": "开始日期",
     "endDate": "结束日期",
     "register": "注册",
-    "login": "登录"
+    "login": "登录",
+    "exit": "退出",
+    "haveAccount": "已有账号? 登录"
   },
   "action": {
     "add": "新增",
@@ -26,7 +28,8 @@
     "export": "导出",
     "import": "导入",
     "edit": "编辑",
-    "submit": "提交"
+    "submit": "提交",
+    "status": "状态"
   },
   "loginForm": {
 		"userName": "用户名",
@@ -56,14 +59,16 @@
     "vue2": "Vue 2",
     "vue3": "Vue 3",
     "own": "基座自带页面",
-    "List": "列表",
-    "Detail": "详情",
+    "user-manager": "用户管理",
+    "user-manager-detail": "用户管理详情",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "预渲染",
     "react18": "React 18",
     "angular11": "Angular 11",
-    "multiple": "多个应用"
+    "multiple": "多个应用",
+    "role-manager": "角色管理",
+    "menu-manager": "菜单管理"
   },
   "menuListForm": {
     "name": "名称",
@@ -81,5 +86,17 @@
     "fullPath": "全路由",
     "createUserNickName": "创建人",
     "createDateTime": "创建时间"
+  },
+  "userListTable": {
+    "id": "ID",
+    "nickName": "昵称",
+    "realName": "真实姓名",
+    "mail": "邮箱",
+    "phone": "电话",
+    "departmentName": "部门名称",
+    "roleName": "角色名称",
+    "status": "状态",
+    "createDateTime": "创建时间",
+    "lastLoginTime": "最后登录时间"
   }
 }

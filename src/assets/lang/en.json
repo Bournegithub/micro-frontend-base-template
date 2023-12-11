@@ -12,7 +12,9 @@
     "startDate": "Start date",
     "endDate": "End date",
     "register": "Register",
-    "login": "Login"
+    "login": "Login",
+    "exit": "Exit",
+    "haveAccount": "Have account? Go login"
   },
   "action": {
     "add": "Add",
@@ -26,7 +28,8 @@
     "export": "Export",
     "import": "Import",
     "edit": "Edit",
-		"submit": "Submit"
+		"submit": "Submit",
+    "status": "Status"
   },
 	"loginForm": {
 		"userName": "User name",
@@ -56,14 +59,16 @@
     "vue2": "Vue 2",
     "vue3": "Vue 3",
     "own": "Base site own",
-    "List": "List",
-    "Detail": "Detail",
+    "user-manager": "User manager",
+    "user-manager-detail": "User manager detail",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "Pre Render (SSG)",
     "react18": "React 18",
     "angular17": "Angular 17",
-    "multiple": "Multiple"
+    "multiple": "Multiple",
+    "role-manager": "Role manager",
+    "menu-manager": "Menu manager"
   },
   "menuListForm": {
     "name": "Name",
@@ -81,5 +86,17 @@
     "fullPath": "Full path",
     "createUserNickName": "Creater",
     "createDateTime": "Create time"
+  },
+  "userListTable": {
+    "id": "ID",
+    "nickName": "Nick name",
+    "realName": "Real name",
+    "mail": "Mail",
+    "phone": "Phone",
+    "departmentName": "Department name",
+    "roleName": "Role name",
+    "status": "Status",
+    "createDateTime": "Create time",
+    "lastLoginTime": "Last login time"
   }
 }

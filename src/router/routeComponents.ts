@@ -29,6 +29,6 @@
     return componentMap;
   };
   
-  // 所有页面路由数据
+  // 所有页面组件数据
   export const componentMap = getPageComponents();
   

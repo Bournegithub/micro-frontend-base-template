@@ -20,10 +20,7 @@ let useLanguage = '';
 
 
 const systemLanguage = navigator.language.toLowerCase();
-
-if (localStorage.getItem('language') && localStorage.getItem('language') !== '') {
-	useLanguage = localStorage.getItem('language') || systemLanguage;
-}
+useLanguage = localStorage.getItem('language') || systemLanguage;
 
 const i18n = createI18n({
   locale: useLanguage || 'en', // 设置当前语言类型

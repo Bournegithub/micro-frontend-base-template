@@ -22,6 +22,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 const pinia = createPinia();
 pinia.use(piniaPersist);
 
+
 microApp.start({
   inline: false, // 默认值false
   destroy: false, // 默认值false
