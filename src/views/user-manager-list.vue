@@ -141,9 +141,7 @@ const fetch = () => {
     // console.log('res-list', res.list)
     tableData = res.list;
     paginationRecord.total = res.total;
-  }).catch().finally(() => {
-    paginationRecord.page = paginationRecord.page + 1;
-  });
+  }).catch().finally(() => {});
 };
 const handleEdit = () => {
 	console.log('handleEdit');

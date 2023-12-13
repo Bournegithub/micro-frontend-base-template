@@ -30,7 +30,7 @@
 				<el-dropdown @command="userCommand">
 					<div class="user-wrap">
 						<el-avatar icon="UserFilled" />
-						<span>{{ userInfo.realName }}</span>
+						<span>{{ userInfo.nickName }}</span>
 					</div>
 					<template #dropdown>
 						<el-dropdown-menu>
@@ -78,8 +78,8 @@ const globalStore = useGlobalStore();
 const menusStore = useMenusStore();
 const storeUser = globalStore.userInfo;
 console.log('storeUser', storeUser);
-if (storeUser.realName) {
-	userInfo.realName = storeUser.realName;
+if (storeUser.nickName) {
+	userInfo.nickName = storeUser.nickName;
 }
 const i18nCommand = (command: string) => {
 	locale.value = command;

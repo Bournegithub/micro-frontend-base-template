@@ -65,9 +65,11 @@
 
 <script lang="ts" setup>
 import { reactive, ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import type { ElForm } from 'element-plus';
 import { useI18n } from 'vue-i18n';
+import { useGlobalStore } from '@/store/index';
+import { useMenusStore } from '@/store/menu';
 import { checkUserName, checkPassword } from '@/common/utils/reg';
 import { register } from '@/server/request';
 import useCurrentInstance from "@/hooks/useCurrentInstance";
@@ -155,13 +157,40 @@ const languageDisabled = computed(() => {
 	}
 });
 
+const route = useRoute();
+const redirectUrl = route?.query?.redirect;
+const redirectUrlStr = ref();
+if(redirectUrl) {
+	redirectUrlStr.value = redirectUrl.toString();
+}
+const globalStore = useGlobalStore();
+const menusStore = useMenusStore();
 const userRegister = (data: Object) => {
 	submitStatus.value = true;
 	register(data).then((res) => {
 		if (res) {
 			// proxy.$message.success('注册成功');
 			globalProperties.$message.success('注册成功');
-			router.push('/login');
+			const { token } = res;
+			// 设置token
+			localStorage.setItem('Authorization', token);
+			// 获取用户信息
+			globalStore.fetchUserInfo().then(() => {				
+				globalProperties.$message.success('登录成功');
+			}).catch().finally();
+			// 获取菜单
+			menusStore.fetchMenus().then(() => {
+				console.log('redirectUrlStr', redirectUrlStr);
+				if (redirectUrlStr.value) {
+					router.push({
+						path: redirectUrlStr.value,
+					});
+				} else {
+					// 首次登录完善个人资料
+					// router.push('/user-center');
+					router.push('/');
+				}
+			}).catch().finally();
 		}
 	}).catch().finally(() => {
 		submitStatus.value = false;

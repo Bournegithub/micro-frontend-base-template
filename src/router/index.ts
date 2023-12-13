@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
   const menusStore = useMenusStore();
   // 获取权限路由
   const permissionsRouter = menusStore.getPermissionsRouter;
-  console.log('permissionRoutesLoaded', permissionRoutesLoaded);
+  // console.log('permissionRoutesLoaded', permissionRoutesLoaded);
   // 获取菜单
   const navMenus = menusStore.getMenus;
   // console.log('navMenus', navMenus);
@@ -52,11 +52,8 @@ router.beforeEach(async (to, from, next) => {
       findDefaultActive(navMenus, to.path);
       to.path === '/login' || to.path === '/register' ? next({path: '/'}) : next();
     } else {
-      // console.log('debug0-to', to);
-      // 清除上一用户登出后index的redirect重定向值
-      router.removeRoute('index');
       // 本项目没有首页或者dashborad页面, 所以将根路由重定向到权限路由第一个(如有index页面则无需处理)
-      // 获取第一个有效路由
+      // 获取第一个有效路由 清除上一用户登出后index的redirect重定向值
       router.addRoute({ path: '/', name: 'index', redirect: permissionsRouter[0].path });
       // 加载动态菜单
       permissionsRouter.forEach((item: any) => {
