@@ -1,5 +1,5 @@
 export const deepObjTransField = (data = [] as Array<any>, fields = {} as {[key: string]: string}) => {
-	// fields: { oldFiled: newField }
+	// fields: { oldField: newField }
 	if (Object.keys(fields).length <= 0) {
 		console.log('请传入需要转换字段的健值对');
 		return data;

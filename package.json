@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
+    "@types/qs": "^6.9.10",
     "@vitejs/plugin-legacy": "^4.1.1",
     "@vitejs/plugin-vue": "4.2.3",
     "file-saver": "^2.0.5",

@@ -1,6 +1,6 @@
 import type { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import router from '@/router';
+import router, { removeRouter } from '@/router';
 import { ElMessage } from 'element-plus';
 import { env } from '@/hooks/env';
 
@@ -12,6 +12,28 @@ const http: AxiosInstance = axios.create({
 	timeout: 6 * 1000, // 请求超时时间
 	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 });
+
+// 处理get请求中的一维数组或者对象数组以及对象
+// 一维数组/对象数组/对象全部用JSON.stringify()转字符串
+// 如果array或者object为空值(array.length === 0 , Object.keys(obj).length === 0)
+const stringifyArrayObj = (data: any) => {
+	const isObject = (obj: any) => obj !== null && typeof obj === 'object';
+	const isArray = (obj: any) => Array.isArray(obj)
+	Object.keys(data).forEach((key: string) => {
+		if (isArray(data[key]) || isObject(data[key])) {
+			if (data[key].length === 0 || Object.keys(data[key]).length === 0) {
+				delete data[key]
+			} else {
+				data[key] = JSON.stringify(data[key]);
+			}
+		}
+		if (typeof data[key] === 'string' && data[key] === '') {
+			delete data[key]
+		}
+	});
+	return data;
+}
+
 
 // 请求拦截器
 /*
@@ -25,12 +47,17 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   }
 	config.headers['APP-CODE'] = VITE_APP_CODE;
   // 在发送请求之前做些什么
+	// get请求处理数组
+	// console.log('config.method', config.method);
+	
+	
 	// 判断上传下载请求头
   return config;
 }, function (error) {
   // 对请求错误做些什么
   return Promise.reject(error);
 });
+
 
 // 响应拦截器
 http.interceptors.response.use((response: AxiosResponse) => {
@@ -49,6 +76,11 @@ http.interceptors.response.use((response: AxiosResponse) => {
 				// 清除store
 				// 跳转到登录页面
 				ElMessage.info('Token已失效');
+				localStorage.removeItem('Authorization');
+				localStorage.removeItem('language');
+				localStorage.removeItem('menus');
+				localStorage.removeItem('permissionRoutesLoaded');
+				removeRouter();
 				router.push({
 					path: '/login',
 					query:{
@@ -123,8 +155,10 @@ http.interceptors.response.use((response: AxiosResponse) => {
 
 // 
 const request = {
+	// get请求中字段值为一维数组或者对象数组时,不采用qs转译,服务端是egg,接受queries会造成其他字段也变为a: ['b']的形式,
+	// 选择用JSON.stringify()来处理,减小服务端的处理难度
 	get<T = any>(url: string, data?: any, ): Promise<T> {
-		return request.request('GET', url, { params: data });
+		return request.request('GET', url, { params: data ? stringifyArrayObj(data) : data});
 	},
 	post<T = any>(url: string, data?: any): Promise<T> {
 		return request.request('POST', url, { data });
@@ -133,7 +167,7 @@ const request = {
 		return request.request('PUT', url, { data });
 	},
 	delete<T = any>(url: string, data?: any): Promise<T> {
-		return request.request('DELETE', url, { params: data });
+		return request.request('DELETE', url, { params: data ? stringifyArrayObj(data) : data });
 	},
 	upload<T = any>(url: string, data?: any): Promise<T> {
 		const headers = {
@@ -154,6 +188,8 @@ const request = {
 				if (responseType && responseType === 'blob') {
 					// download(res, params.fileName);
 				}
+				// get请求参数为数组时序列化
+			
 				resolve(res as unknown as Promise<T>);
 			}).catch((e: Error | AxiosError) => {
 				reject(e);

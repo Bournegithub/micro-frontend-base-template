@@ -60,7 +60,10 @@
     "vue3": "Vue 3",
     "own": "Base site own",
     "user-manager": "User manager",
+    "user-manager-list": "User manager list",
     "user-manager-detail": "User manager detail",
+    "user-manager-add": "User manager add",
+    "user-manager-edit": "User manager edit",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "Pre Render (SSG)",
@@ -68,24 +71,41 @@
     "angular17": "Angular 17",
     "multiple": "Multiple",
     "role-manager": "Role manager",
-    "menu-manager": "Menu manager"
+    "role-manager-list": "Role manager list",
+    "role-manager-detail": "Role manager detail",
+    "role-manager-add": "Role manager add",
+    "role-manager-edit": "Role manager edit",
+    "menu-manager": "Menu manager",
+    "menu-manager-list": "Menu manager list",
+    "menu-manager-detail": "Menu manager detail",
+    "menu-manager-add": "Menu manager add",
+    "menu-manager-edit": "Menu manager edit"
   },
   "menuListForm": {
     "name": "Name",
     "appCode": "App Name",
-    "state": "State",
-    "createDateTime": "Create time"
+    "status": "Status",
+    "createdDateTime": "Created time"
   },
   "menuListTable": {
     "code": "Code",
     "name": "Name",
-    "state": "State",
+    "status": "Status",
     "hidden": "Hidden",
     "appName": "App Name",
     "path": "Path",
     "fullPath": "Full path",
     "createUserNickName": "Creater",
-    "createDateTime": "Create time"
+    "createdDateTime": "Created time"
+  },
+  "userListForm": {
+    "nickName": "Nick Name",
+    "roleId": "Role",
+    "mail": "Mail",
+    "phone": "Phone",
+    "departmentId": "Department",
+    "status": "Status",
+    "createdDateTime": "Created time"
   },
   "userListTable": {
     "id": "ID",
@@ -96,7 +116,7 @@
     "departmentName": "Department name",
     "roleName": "Role name",
     "status": "Status",
-    "createDateTime": "Create time",
+    "createdDateTime": "Created time",
     "lastLoginTime": "Last login time"
   }
 }

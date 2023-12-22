@@ -44,14 +44,14 @@
       <el-icon v-else>
         <Component :is="item[`${menuOptions.icon}`]" />
       </el-icon>
-      {{ item.title }}
-      <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
+      <!-- <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span> -->
+      <span>{{ item[`${menuOptions.title}`] ? $t(`menu.${item[`${menuOptions.title}`]}`) : '' }}</span>
     </el-menu-item>
   </template>
   <!-- 没有子节点，使用 el-menu-item 渲染 -->
   <template v-else>
     <el-menu-item
-      v-if="!item.hidden"
+      v-if="!item[`${menuOptions.hidden}`] && (!item[`${menuOptions.children}`] || (item[`${menuOptions.children}`] && item[`${menuOptions.children}`].length === 0))"
       :index="item[`${menuOptions.code}`]"
       @click="jump(item)"
     >
@@ -62,8 +62,8 @@
       <el-icon v-else>
         <Component :is="item[`${menuOptions.icon}`]" />
       </el-icon>
-      {{ item.title }}
-      <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span>
+      <!-- <span>{{ $t(`menu.${item[`${menuOptions.title}`]}`) }}</span> -->
+      <span>{{ item[`${menuOptions.title}`] ? $t(`menu.${item[`${menuOptions.title}`]}`) : '' }}</span>
     </el-menu-item>
   </template>
 </template>

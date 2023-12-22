@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useMenusStore } from '@/store/menu';
-import routes, { catchRoute } from './defaultRoutes.ts';
+import routes, { catchRoute, baseRoutes } from './defaultRoutes.ts';
 import type { MenuOptions } from '@/models/Menu';
 
 
@@ -83,5 +83,17 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 });
+
+export const removeRouter = () => {
+	const routes = router.getRoutes();
+	routes.map((item: any) => {
+		if (!baseRoutes.includes(item.name)) {
+			router.removeRoute(item.name);
+		} else if (item.path === '/') {
+			item.redirect = null;
+		}
+		
+	});
+}
 
 export default router;

@@ -32,7 +32,7 @@
 					{
 						"id": "1000010000200001",
 						"code": "10020000",
-						"name": "user-manager-list",
+						"name": "user-manager",
 						"icon": "Document",
 						"children": [],
 						"meta": {

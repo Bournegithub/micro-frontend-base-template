@@ -56,7 +56,7 @@ const menu2router = (menus = [] as Array<RouteRecordRaw>, transField = {} as {[k
             { path: '/detail/:id', component: Add, hidden: true },
             { path: '/edit/:id', component: Add, hidde: true },
           ],
-          hidden: false,
+          hidden: true, <!--此处约定为true,由SubMenu菜单组件去处理如何显示的问题-->
         }
         *
         */
@@ -128,7 +128,7 @@ export const useMenusStore = defineStore('menus', {
       this.menus = menus;
     },
     setDefaultActive (code: string) {
-      console.log('setDefaultActive-code',code);
+      // console.log('setDefaultActive-code',code);
       this.defaultActive = code;
     },
   }

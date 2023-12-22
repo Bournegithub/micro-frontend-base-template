@@ -60,7 +60,10 @@
     "vue3": "Vue 3",
     "own": "基座自带页面",
     "user-manager": "用户管理",
+    "user-manager-list": "用户管理列表",
     "user-manager-detail": "用户管理详情",
+    "user-manager-add": "用户管理新增",
+    "user-manager-edit": "用户管理编辑",
     "nuxt3": "Nuxt 3",
     "next14": "Next 14",
     "prerender": "预渲染",
@@ -68,24 +71,41 @@
     "angular11": "Angular 11",
     "multiple": "多个应用",
     "role-manager": "角色管理",
-    "menu-manager": "菜单管理"
+    "role-manager-list": "角色管理列表",
+    "role-manager-detail": "角色管理详情",
+    "role-manager-add": "角色管理新增",
+    "role-manager-edit": "角色管理编辑",
+    "menu-manager": "菜单管理",
+    "menu-manager-list": "菜单管理列表",
+    "menu-manager-detail": "菜单管理详情",
+    "menu-manager-add": "菜单管理新增",
+    "menu-manager-edit": "菜单管理编辑"
   },
   "menuListForm": {
     "name": "名称",
     "appCode": "应用名称",
-    "state": "状态",
-    "createDateTime": "创建时间"
+    "status": "状态",
+    "createdDateTime": "创建时间"
   },
   "menuListTable": {
     "code": "Code",
     "name": "名称",
-    "state": "状态",
+    "status": "状态",
     "hidden": "是否隐藏",
     "appName": "应用名称",
     "path": "路由",
     "fullPath": "全路由",
     "createUserNickName": "创建人",
-    "createDateTime": "创建时间"
+    "createdDateTime": "创建时间"
+  },
+  "userListForm": {
+    "nickName": "昵称",
+    "roleId": "角色",
+    "mail": "邮箱",
+    "phone": "电话",
+    "departmentId": "部门",
+    "status": "状态",
+    "createdDateTime": "创建时间"
   },
   "userListTable": {
     "id": "ID",
@@ -96,7 +116,7 @@
     "departmentName": "部门名称",
     "roleName": "角色名称",
     "status": "状态",
-    "createDateTime": "创建时间",
+    "createdDateTime": "创建时间",
     "lastLoginTime": "最后登录时间"
   }
 }

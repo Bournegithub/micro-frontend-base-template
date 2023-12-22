@@ -49,6 +49,7 @@ import { useRouter } from 'vue-router';
 import { useGlobalStore } from '@/store/index';
 import { useMenusStore } from '@/store/menu';
 import { useI18n } from 'vue-i18n'
+import { removeRouter } from '@/router'
 
 const { locale } = useI18n();
 // TS interface
@@ -87,17 +88,6 @@ const i18nCommand = (command: string) => {
 }
 const router = useRouter();
 
-const removeRouter = () => {
-	const routes = router.getRoutes();
-	routes.map((item: any) => {
-		if (!['index', 'Login', 'Register', 'User center', 'Error404', 'Error'].includes(item.name)) {
-			router.removeRoute(item.name);
-		} else if (item.path === '/') {
-			item.redirect = null;
-		}
-		
-	});
-}
 const userCommand = (command: string) => {
 	switch (command) {
   case 'loginOut':
@@ -118,7 +108,8 @@ const userCommand = (command: string) => {
 const languageDisabled = computed(() => {
 	return (language: string) => {
 		let result = false;
-		if (language === localStorage.getItem('language')) {
+		console.log('locale.value', locale.value);
+		if (language === locale.value) {
 			result = true;
 		}
 		return result;

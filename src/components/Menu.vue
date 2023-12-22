@@ -1,7 +1,7 @@
 <template>
-    <el-menu v-bind="$attrs">
-      <SubMenu v-for="(item, index) in menuData" :key="index" :item="item" :menu-options="options"/>
-    </el-menu>
+	<el-menu v-bind="$attrs">
+		<SubMenu v-for="(item, index) in menuData" :key="index" :item="item" :menu-options="options"/>
+	</el-menu>
   </template>
   
 <script lang="ts" setup>

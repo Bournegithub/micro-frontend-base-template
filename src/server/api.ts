@@ -14,6 +14,6 @@ export default {
   userManager: {
     userPage: '/user/page',
     updateUser: '/user/update',
-    delUser: '/user/del',
+    delUser: '/user/delete',
   },
 };

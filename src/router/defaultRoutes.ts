@@ -69,6 +69,8 @@ const catchRoute = {
 // SEO, 预渲染的路由地址
 const preRenderRoutes = ['/own/prerender', '/login', '/404'];
 
+const baseRoutes = routes.map(item => item.name);
+
 export default routes;
 
-export { catchRoute, preRenderRoutes };
+export { catchRoute, preRenderRoutes, baseRoutes };

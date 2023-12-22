@@ -7,6 +7,6 @@ export const userListTableCloumns = [
 	{ label: 'departmentName', prop: 'departmentName', width: '200px' },
 	{ label: 'roleName', prop: 'roleName', width: '300px' },
 	{ label: 'status', prop: 'status', width: '120px' },
-	{ label: 'createDateTime', prop: 'createDateTime', width: '180px' },
+	{ label: 'createdDateTime', prop: 'createdDateTime', width: '180px' },
 	{ label: 'lastLoginTime', prop: 'lastLoginTime', width: '180px' },
 ]
